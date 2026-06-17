@@ -1,97 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 
 export default function Hero() {
-  useEffect(() => {
-    // 1. PARTICLES CANVAS ANIMATION
-    const cv = document.getElementById('pcanvas');
-    if (cv) {
-      const ctx = cv.getContext('2d');
-      let pts = [];
-      let frameId;
-
-      const resize = () => {
-        cv.width = window.innerWidth;
-        cv.height = window.innerHeight;
-      };
-      resize();
-      window.addEventListener('resize', resize);
-
-      // Initialize particles
-      for (let i = 0; i < 70; i++) {
-        pts.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          vx: (Math.random() - 0.5) * 0.28,
-          vy: (Math.random() - 0.5) * 0.28,
-          r: Math.random() * 1.4 + 0.4,
-          a: Math.random() * 0.45 + 0.08,
-        });
-      }
-
-      const draw = () => {
-        ctx.clearRect(0, 0, cv.width, cv.height);
-
-        // Draw and update particles
-        pts.forEach((p) => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(139,92,246,${p.a})`;
-          ctx.fill();
-
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0) p.x = cv.width;
-          if (p.x > cv.width) p.x = 0;
-          if (p.y < 0) p.y = cv.height;
-          if (p.y > cv.height) p.y = 0;
-        });
-
-        // Draw connecting lines
-        for (let i = 0; i < pts.length; i++) {
-          for (let j = i + 1; j < pts.length; j++) {
-            const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
-            if (d < 95) {
-              ctx.beginPath();
-              ctx.moveTo(pts[i].x, pts[i].y);
-              ctx.lineTo(pts[j].x, pts[j].y);
-              ctx.strokeStyle = `rgba(139,92,246,${0.09 * (1 - d / 95)})`;
-              ctx.stroke();
-            }
-          }
-        }
-        frameId = requestAnimationFrame(draw);
-      };
-
-      frameId = requestAnimationFrame(draw);
-
-      // Cleanup canvas animation
-      return () => {
-        window.removeEventListener('resize', resize);
-        cancelAnimationFrame(frameId);
-      };
-    }
-  }, []);
-
-  useEffect(() => {
-    // 2. MOUSE REACTIVE ORBS PARALLAX
-    const handleOrbParallax = (e) => {
-      const o1 = document.querySelector('.ho1');
-      const o2 = document.querySelector('.ho2');
-      if (o1) {
-        o1.style.transform = `translate(${e.clientX * 0.018}px, ${e.clientY * 0.018}px)`;
-      }
-      if (o2) {
-        o2.style.transform = `translate(${-e.clientX * 0.01}px, ${-e.clientY * 0.01}px)`;
-      }
-    };
-    document.addEventListener('mousemove', handleOrbParallax);
-
-    return () => {
-      document.removeEventListener('mousemove', handleOrbParallax);
-    };
-  }, []);
-
   const handleSmoothScroll = (e, targetId) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
@@ -101,88 +12,132 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero">
-      <canvas id="pcanvas"></canvas>
-      <div className="hgrid"></div>
-      <div className="horb ho1"></div>
-      <div className="horb ho2"></div>
-      <div className="horb ho3"></div>
-      <div className="hcont">
-        <div className="hinner">
+    <section id="hero" style={{ background: 'var(--bg)', color: '#fff', position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+      <div className="hgrid" style={{ zIndex: 1 }}></div>
+      <div className="horb ho1" style={{ zIndex: 1 }}></div>
+      <div className="horb ho2" style={{ zIndex: 1 }}></div>
+      
+      <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
+        <div className="hinner" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '4rem', alignItems: 'center' }}>
+          
+          {/* LEFT CONTENT */}
           <div className="hleft">
-            <div className="hbadge">
-              <span className="hbdot"></span>Open to Opportunities
-            </div>
-            <h1 className="hname reveal">
-              Likethan<br /><em>K J</em>
-            </h1>
-            <div className="hrole-wrap reveal d1">
-              <div className="hroles">
-                <span>Full Stack Developer</span>
-                <span>AI Engineer</span>
-                <span>Prompt Engineer</span>
-                <span>Creative Technologist</span>
-              </div>
-            </div>
-            <p className="hdesc reveal d2">
-              Building intelligent digital experiences at the intersection of full stack engineering, AI systems, and human-centred design.<br />
-              <strong style={{ color: 'var(--t1)' }}>Design. Develop. Deploy.</strong>
-            </p>
-            <div className="hctas reveal d3">
-              <a href="#fp" className="btn-p" onClick={(e) => handleSmoothScroll(e, 'fp')}>⚡ Explore Projects</a>
-              <a href="#" className="btn-s">↓ Download Resume</a>
-              <a href="#contact" className="btn-s" onClick={(e) => handleSmoothScroll(e, 'contact')}>✉ Contact</a>
-            </div>
-            <div className="hstats reveal d4">
-              <div>
-                <div className="hstat-num" data-count="2">0+</div>
-                <div className="hstat-lbl">Major Projects</div>
-              </div>
-              <div>
-                <div className="hstat-num" data-count="4">0+</div>
-                <div className="hstat-lbl">Certifications</div>
-              </div>
-              <div>
-                <div className="hstat-num" data-count="2">0+</div>
-                <div className="hstat-lbl">Internships</div>
-              </div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="hbadge"
+            >
+              <span className="hbdot"></span>LIKETHAN PORTFOLIO
+            </motion.div>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="hname"
+              style={{ fontSize: 'clamp(3rem, 6.5vw, 5.5rem)', lineHeight: 1.05 }}
+            >
+              Hi, I'm a<br />
+              <span className="text-stroke-outline">Full Stack</span><br />
+              <span style={{ color: '#FF2A2A' }}>Developer</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="hdesc"
+              style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.7)', margin: '1.5rem 0 2.5rem 0', maxWidth: '540px', lineHeight: 1.6 }}
+            >
+              Building next-generation web applications, elegant user interfaces, and scalable backend platforms. Let's design and deploy your digital experiences together.
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="hbuttons"
+              style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}
+            >
+              <a 
+                href="#services-process" 
+                onClick={(e) => handleSmoothScroll(e, 'services-process')}
+                className="btn-p"
+                style={{
+                  background: '#FF2A2A',
+                  color: '#fff',
+                  padding: '1rem 2rem',
+                  borderRadius: '99px',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  boxShadow: '0 10px 25px rgba(255, 42, 42, 0.3)',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                View Process
+              </a>
+              <a 
+                href="#contact" 
+                onClick={(e) => handleSmoothScroll(e, 'contact')}
+                className="btn-s"
+                style={{
+                  background: 'transparent',
+                  color: '#fff',
+                  border: '1.5px solid rgba(255,255,255,0.2)',
+                  padding: '1rem 2rem',
+                  borderRadius: '99px',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                Contact Me
+              </a>
+            </motion.div>
           </div>
-          <div className="hright">
-            <div className="hframe">
-              <div className="hframe-glow">
-                <div className="hframe-inner">
-                  <img src="/profile.jpg" alt="Likethan K J" />
-                </div>
-              </div>
-              <div className="hfc1">
-                <span className="fci">🤖</span>
-                <div>
-                  <div className="fcl">AI Engineer</div>
-                  <div className="fcs">Gemini API</div>
-                </div>
-              </div>
-              <div className="hfc2">
-                <span className="fci">⚡</span>
-                <div>
-                  <div className="fcl">Full Stack</div>
-                  <div className="fcs">Flask + React</div>
-                </div>
-              </div>
-              <div className="hfc3">
-                <span className="fci">🔐</span>
-                <div>
-                  <div className="fcl">Security</div>
-                  <div className="fcs">Ethical Hacking</div>
-                </div>
-              </div>
-            </div>
+
+          {/* RIGHT SIDE: PREMIUM PORTRAIT */}
+          <div className="hright" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.02, rotate: '1deg' }}
+              style={{
+                position: 'relative',
+                width: '340px',
+                height: '420px',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                background: '#111111',
+                border: '1.5px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 30px 60px rgba(0,0,0,0.6)',
+                cursor: 'pointer'
+              }}
+            >
+              <img
+                src="/profile_upright.png"
+                alt="Likethan Developer Portrait"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </motion.div>
           </div>
+
         </div>
       </div>
-      <div className="hscroll">
-        <span>Scroll</span>
-        <div className="hscrl-line"></div>
+
+      {/* Bouncing Scroll indicator */}
+      <div className="hscroll" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 10 }}>
+        <span style={{ fontFamily: 'var(--font-m)', fontSize: '0.62rem', letterSpacing: '0.2em' }}>Scroll</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+          style={{ marginTop: '0.5rem', color: '#FF2A2A', cursor: 'pointer' }}
+          onClick={(e) => handleSmoothScroll(e, 'about-premium')}
+        >
+          <ArrowDown size={16} />
+        </motion.div>
       </div>
     </section>
   );
