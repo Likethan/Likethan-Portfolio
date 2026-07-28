@@ -27,17 +27,42 @@ I am an AI & Data Science student and software developer passionate about engine
 
 ---
 
-## 🧰 Tech stack (approximate repo composition)
+## 🧰 Tech stacks (detailed)
 
-- JavaScript (~58%)
-- CSS (~41%)
-- HTML (~1%)
+The following lists the main technologies showcased across the portfolio and used in projects featured on the site. The repository itself is primarily JavaScript and CSS, but the projects span web, data science, and cloud tooling.
 
-Other technologies and tools shown on the site and used across my projects:
+- Frontend
+  - JavaScript (ES6+)
+  - HTML5
+  - CSS3 (Flexbox / Grid)
+  - Frameworks & libraries: React (optional in some projects), Tailwind CSS, or plain CSS
+  - UI/UX: responsive design, accessible semantic markup, lightweight animations
 
-- React (if applicable), Tailwind / plain CSS, modern JS (ES6+)
-- Data science: Python, NumPy, pandas, scikit-learn (featured in projects)
-- Deployment: Vercel
+- Data Science & Machine Learning
+  - Python
+  - NumPy, pandas
+  - scikit-learn
+  - Jupyter notebooks for analysis and model exploration
+  - Common workflows: data cleaning, feature engineering, model training & evaluation
+
+- Backend & APIs (project-specific)
+  - Node.js / Express (for simple APIs and demos)
+  - RESTful APIs and integrations with third-party services
+
+- DevOps & Deployment
+  - Hosting: Vercel (portfolio live), Netlify, or GitHub Pages
+  - Version control: Git & GitHub
+  - CI/CD: GitHub Actions (recommended for automation)
+
+- Tools & Utilities
+  - npm / yarn for package management
+  - Build tools: (Vite, Parcel) — can be added if a bundler is desired
+  - Linters & formatters: ESLint, Prettier (recommended)
+
+- Other technologies showcased across projects
+  - SQL / PostgreSQL (data storage & queries)
+  - Cloud: AWS (for cloud-hosted projects or demos)
+  - IoT & embedded: Arduino / microcontroller integration (in select projects)
 
 ---
 
@@ -134,6 +159,6 @@ Consider adding a LICENSE (MIT recommended). If you'd like, I can add an MIT lic
 
 If you'd like, I can next:
 - Add badges (build, license, demo)
-- Add a GitHub Pages or Vercel deployment guide and a sample workflow
+- Add a GitHub Actions workflow for deploy (GitHub Pages / Vercel)
 - Add an MIT LICENSE file
 - Insert real screenshots from the repository
