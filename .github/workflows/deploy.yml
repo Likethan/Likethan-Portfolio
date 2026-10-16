@@ -19,9 +19,6 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -30,7 +27,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
 
       - name: Install dependencies
@@ -43,6 +40,29 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+
+      - name: Ensure GitHub Pages is enabled for this repo
+        # If this step errors due to insufficient token scope, switch to a PAT in secrets (see notes below)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          echo "Enabling GitHub Pages via REST API for repository $REPO"
+          # Use the repository root as the path (adjust to '/docs' if you publish from docs/)
+          payload='{"source":{"branch":"main","path":"/"}}'
+          status=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X PUT \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${REPO}/pages" \
+            -d "$payload")
+          if [ "$status" -ge 200 -a "$status" -lt 300 ]; then
+            echo "GitHub Pages enabled (HTTP $status)"
+          else
+            echo "Failed to enable GitHub Pages (HTTP $status). See repository settings: https://github.com/${REPO}/settings/pages"
+            exit 1
+          fi
 
       - name: Deploy to GitHub Pages
         id: deployment
