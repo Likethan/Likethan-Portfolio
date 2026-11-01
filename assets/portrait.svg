@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#111827"/>
+      <stop offset="100%" style="stop-color:#0B1020"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED"/>
+      <stop offset="100%" style="stop-color:#00C2FF"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <rect width="420" height="520" rx="20" fill="url(#bg)"/>
+  <rect width="420" height="520" rx="20" fill="url(#glow)"/>
+  <!-- Abstract portrait silhouette -->
+  <ellipse cx="210" cy="180" rx="90" ry="100" fill="#1F2937"/>
+  <path d="M120 320 Q210 280 300 320 L320 520 L100 520 Z" fill="#1F2937"/>
+  <ellipse cx="210" cy="175" rx="75" ry="85" fill="#374151"/>
+  <!-- Collar / shirt -->
+  <path d="M160 310 L210 350 L260 310 L280 520 L140 520 Z" fill="#111827"/>
+  <path d="M190 310 L210 340 L230 310" stroke="url(#accent)" stroke-width="2" fill="none"/>
+  <!-- Accent ring -->
+  <circle cx="210" cy="175" r="95" stroke="url(#accent)" stroke-width="1" fill="none" opacity="0.4"/>
+  <!-- Grid overlay -->
+  <g opacity="0.08" stroke="#8B5CF6" stroke-width="0.5">
+    <line x1="0" y1="130" x2="420" y2="130"/>
+    <line x1="0" y1="260" x2="420" y2="260"/>
+    <line x1="0" y1="390" x2="420" y2="390"/>
+    <line x1="105" y1="0" x2="105" y2="520"/>
+    <line x1="210" y1="0" x2="210" y2="520"/>
+    <line x1="315" y1="0" x2="315" y2="520"/>
+  </g>
+  <!-- Initials -->
+  <text x="210" y="400" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" font-weight="800" fill="url(#accent)" opacity="0.15">LK</text>
+  <text x="210" y="480" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="#9CA3AF" letter-spacing="4">LIKETHAN K J</text>
+</svg>
