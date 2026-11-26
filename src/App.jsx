@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import ZeroGravityShaderBackground from './components/ZeroGravityShaderBackground';
 import HolographicBadge from './components/HolographicBadge';
-import QuantumCore3D from './components/QuantumCore3D';
 import ProjectsShowcase from './components/ProjectsShowcase';
 import SkillsBento from './components/SkillsBento';
 import ExperienceTimeline from './components/ExperienceTimeline';
@@ -211,14 +210,13 @@ export default function App() {
               </motion.div>
             </div>
 
-            {/* Right Column: Interactive 3D Quantum Tesseract + 3D Holographic ID Card */}
+            {/* Right Column: 3D Holographic ID Card */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 flex flex-col items-center gap-6"
+              className="lg:col-span-5 flex justify-center items-center"
             >
-              <QuantumCore3D />
               <HolographicBadge />
             </motion.div>
           </div>
