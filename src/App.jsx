@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Sparkles, Terminal as TerminalIcon, Github, Linkedin, ArrowUpRight, Cpu, Layers, Shield, FileText } from 'lucide-react';
+import { ArrowDown, Sparkles, Terminal as TerminalIcon, Github, Linkedin, ArrowUpRight, Cpu, Layers, Shield, FileText, Atom } from 'lucide-react';
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
-import ParticleConstellation from './components/ParticleConstellation';
+import AntigravityCanvas from './components/AntigravityCanvas';
+import ZeroGravityShaderBackground from './components/ZeroGravityShaderBackground';
 import HolographicBadge from './components/HolographicBadge';
 import ProjectsShowcase from './components/ProjectsShowcase';
 import SkillsBento from './components/SkillsBento';
@@ -50,17 +51,20 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen text-slate-100 selection:bg-[#00f5ff]/30 selection:text-white">
-      {/* Interactive Background Particle Mesh */}
-      <ParticleConstellation />
+    <div className="relative min-h-screen text-slate-100 selection:bg-[#ff143d]/30 selection:text-white bg-[#09090d]">
+      {/* 1. Deep Obsidian & Kinetic Crimson WebGL Fragment Shader Layer (Zero-G Fluid Physics) */}
+      <ZeroGravityShaderBackground />
 
-      {/* Noise Texture Overlay for Editorial Luxury Polish */}
+      {/* 2. Three.js Antigravity Scene (2,500 Weightless Particles + Floating Obsidian Crystals with Crimson Rim) */}
+      <AntigravityCanvas />
+
+      {/* 3. Noise Texture Overlay for Editorial Luxury Polish */}
       <div className="noise-overlay" aria-hidden="true" />
 
-      {/* Interactive Desktop Custom Cursor */}
+      {/* 4. Interactive Desktop Custom Cursor */}
       <CustomCursor />
 
-      {/* Navigation HUD */}
+      {/* 5. Navigation HUD */}
       <Navbar
         soundEnabled={soundEnabled}
         setSoundEnabled={setSoundEnabled}
@@ -72,26 +76,26 @@ export default function App() {
         {/* ================= HERO SECTION ================= */}
         <section
           id="hero"
-          className="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 overflow-hidden bg-grid-cyber"
+          className="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 overflow-hidden"
         >
-          {/* Subtle Ambient Radial Lighting */}
-          <div className="glow-ambient-cyan left-[-100px] top-[10%]" />
-          <div className="glow-ambient-crimson right-[-100px] top-[20%]" />
+          {/* Subtle Ambient Radial Lighting Highlights */}
+          <div className="glow-ambient-crimson left-[-100px] top-[15%]" />
+          <div className="glow-ambient-purple right-[-100px] top-[25%]" />
 
           <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Kinetic Typography & CTAs */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              {/* Status Pill */}
+              {/* Antigravity Status Pill */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono-code text-slate-300 backdrop-blur-md"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0d101d]/80 border border-white/10 text-xs font-mono-code text-slate-300 backdrop-blur-xl shadow-[0_0_20px_rgba(255,20,61,0.15)]"
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 beacon-dot" />
-                <span className="text-white font-bold">LIKETHAN K J</span>
+                <Atom className="w-3.5 h-3.5 text-[#ff143d] animate-spin" style={{ animationDuration: '6s' }} />
+                <span className="text-white font-bold">ANTIGRAVITY PHYSICS</span>
                 <span className="text-slate-500">•</span>
-                <span className="text-accent-cyan">TAMIL NADU, INDIA</span>
+                <span className="text-[#ff143d] font-semibold">2,500 PARTICLES ACTIVE</span>
               </motion.div>
 
               {/* Kinetic Headline */}
@@ -103,7 +107,7 @@ export default function App() {
               >
                 <h1 className="font-display font-black text-4xl sm:text-6xl xl:text-7xl leading-[1.05] tracking-tight text-white">
                   Engineering <br />
-                  <span className="text-gradient-cyan">Intelligent Systems</span>
+                  <span className="text-gradient-crimson">Intelligent Systems</span>
                   <br />
                   <span className="text-stroke-outline">& Modern Web.</span>
                 </h1>
@@ -113,7 +117,7 @@ export default function App() {
                   <span className="font-mono-code text-sm sm:text-base text-slate-400 mr-2">
                     Specializing in:
                   </span>
-                  <span className="font-mono-code text-sm sm:text-base font-bold text-[#00f5ff] transition-all">
+                  <span className="font-mono-code text-sm sm:text-base font-bold text-[#ff143d] transition-all">
                     {roles[roleIndex]}
                   </span>
                 </div>
@@ -140,7 +144,7 @@ export default function App() {
                 {siteConfig.stats.map((s) => (
                   <div
                     key={s.label}
-                    className="p-3 rounded-xl bg-white/5 border border-white/10 text-center backdrop-blur-md"
+                    className="p-3 rounded-xl bg-[#0e1220]/60 border border-white/10 text-center backdrop-blur-md hover:border-[#ff143d]/30 transition-colors"
                   >
                     <p className="font-display font-black text-xl text-white">{s.value}</p>
                     <p className="text-[10px] font-mono-code text-slate-400 uppercase mt-0.5">
@@ -160,23 +164,23 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => scrollToSection('projects')}
-                  className="px-6 py-3 rounded-full bg-gradient-to-r from-[#00f5ff] via-[#38bdf8] to-[#8b5cf6] text-[#08090d] font-mono-code font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_25px_rgba(0,245,255,0.4)] transition-all hover:scale-105"
+                  className="px-6 py-3 rounded-full bg-gradient-to-r from-[#ff143d] via-[#ff3b5c] to-[#8b5cf6] text-white font-mono-code font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_30px_rgba(255,20,61,0.5)] transition-all hover:scale-105"
                 >
                   Explore Systems
                 </button>
                 <button
                   type="button"
                   onClick={() => scrollToSection('terminal')}
-                  className="px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 text-white font-mono-code font-bold text-xs border border-white/15 flex items-center gap-2 transition-all hover:border-[#00f5ff]/40"
+                  className="px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 text-white font-mono-code font-bold text-xs border border-white/15 flex items-center gap-2 transition-all hover:border-[#ff143d]/40"
                 >
-                  <TerminalIcon className="w-4 h-4 text-[#00f5ff]" />
+                  <TerminalIcon className="w-4 h-4 text-[#ff143d]" />
                   <span>Launch CLI Terminal</span>
                 </button>
                 <a
                   href={siteConfig.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/15 transition-all"
+                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/15 transition-all hover:border-[#ff143d]/40"
                   title="View GitHub Profile"
                 >
                   <Github className="w-4 h-4" />
@@ -185,7 +189,7 @@ export default function App() {
                   href={siteConfig.linkedinUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/15 transition-all"
+                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/15 transition-all hover:border-[#ff143d]/40"
                   title="Connect on LinkedIn"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -212,7 +216,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => scrollToSection('projects')}
-              className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-[#00f5ff] hover:bg-[#00f5ff]/20 transition-all animate-bounce"
+              className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-[#ff143d] hover:bg-[#ff143d]/20 transition-all animate-bounce"
             >
               <ArrowDown className="w-4 h-4" />
             </button>
@@ -232,17 +236,17 @@ export default function App() {
         <CertificationsWall />
 
         {/* ================= INTERACTIVE CLI TERMINAL SECTION ================= */}
-        <section id="terminal" className="py-24 relative overflow-hidden bg-grid-cyber">
-          <div className="glow-ambient-cyan left-[-100px] top-[20%]" />
+        <section id="terminal" className="py-24 relative overflow-hidden">
+          <div className="glow-ambient-crimson left-[-100px] top-[20%]" />
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 space-y-8">
             <div className="text-center space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00f5ff]/10 border border-[#00f5ff]/25 text-[#00f5ff] text-xs font-mono-code font-bold">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ff143d]/10 border border-[#ff143d]/25 text-[#ff143d] text-xs font-mono-code font-bold">
                 <TerminalIcon className="w-3.5 h-3.5" />
                 <span>INTERACTIVE CLI SUITE</span>
               </div>
               <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-                Developer <span className="text-gradient-cyan">Command Center</span>
+                Developer <span className="text-gradient-crimson">Command Center</span>
               </h2>
               <p className="text-slate-400 text-xs sm:text-sm font-mono-code">
                 Execute live commands in the browser or click interactive buttons to query developer telemetry.
