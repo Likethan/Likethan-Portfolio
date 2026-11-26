@@ -56,13 +56,13 @@ export default function CustomCursor() {
       ) {
         if (!isHovered) {
           isHovered = true;
-          ring.style.borderColor = 'var(--accent-cyan)';
-          ring.style.backgroundColor = 'rgba(0, 245, 255, 0.1)';
+          ring.style.borderColor = '#d4af37';
+          ring.style.backgroundColor = 'rgba(16, 185, 129, 0.12)';
         }
       } else {
         if (isHovered) {
           isHovered = false;
-          ring.style.borderColor = 'rgba(0, 245, 255, 0.45)';
+          ring.style.borderColor = 'rgba(197, 160, 89, 0.45)';
           ring.style.backgroundColor = 'transparent';
         }
       }

@@ -134,32 +134,32 @@ export default function TerminalWidget() {
   };
 
   return (
-    <div className="glass-panel overflow-hidden border border-white/10 shadow-2xl rounded-2xl bg-[#090b14]/90 backdrop-blur-2xl">
+    <div className="asgardian-frame overflow-hidden border border-[#c5a059]/25 shadow-2xl rounded-2xl bg-[#06140b]/90 backdrop-blur-2xl">
       {/* Window Title Bar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-[#0c101d] border-b border-white/10">
+      <div className="flex items-center justify-between px-4 py-3 bg-[#040a06] border-b border-[#c5a059]/20">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-rose-500/80 border border-rose-600/50" />
-          <div className="w-3 h-3 rounded-full bg-amber-500/80 border border-amber-600/50" />
           <div className="w-3 h-3 rounded-full bg-emerald-500/80 border border-emerald-600/50" />
-          <span className="ml-2 font-mono-code text-xs text-slate-400 font-medium">
+          <div className="w-3 h-3 rounded-full bg-amber-500/80 border border-amber-600/50" />
+          <div className="w-3 h-3 rounded-full bg-[#d4af37]/80 border border-[#c5a059]/50" />
+          <span className="ml-2 font-mono-code text-xs text-slate-300 font-medium">
             likethan@terminal: ~ (bash 5.2)
           </span>
         </div>
         <div className="flex items-center gap-2 text-[11px] font-mono-code text-slate-400">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>PORT 443 // SECURE</span>
+          <span className="text-emerald-400">PORT 443 // SECURE</span>
         </div>
       </div>
 
       {/* Terminal Output Area */}
       <div
         ref={terminalBodyRef}
-        className="p-5 font-mono-code text-xs sm:text-sm text-slate-200 h-64 sm:h-72 overflow-y-auto space-y-2 selection:bg-[#00f5ff]/40 selection:text-white"
+        className="p-5 font-mono-code text-xs sm:text-sm text-slate-200 h-64 sm:h-72 overflow-y-auto space-y-2 selection:bg-[#d4af37]/30 selection:text-white"
       >
         {history.map((item, idx) => (
           <div key={idx} className="leading-relaxed">
             {item.type === 'prompt' && (
-              <span className="text-[#00f5ff] font-semibold">{item.text}</span>
+              <span className="text-[#d4af37] font-semibold">{item.text}</span>
             )}
             {item.type === 'system' && (
               <span className="text-emerald-400 font-semibold">{item.text}</span>
@@ -173,16 +173,16 @@ export default function TerminalWidget() {
               </pre>
             )}
             {item.type === 'error' && (
-              <span className="text-rose-400">{item.text}</span>
+              <span className="text-amber-400">{item.text}</span>
             )}
           </div>
         ))}
       </div>
 
       {/* Interactive Command Input & Quick Buttons */}
-      <div className="border-t border-white/10 bg-[#0c101d]/90 p-3 space-y-2.5">
+      <div className="border-t border-[#c5a059]/20 bg-[#040a06]/95 p-3 space-y-2.5">
         <form onSubmit={handleSubmit} className="flex items-center gap-2 px-2">
-          <span className="text-[#00f5ff] font-mono-code text-xs font-bold">❯</span>
+          <span className="text-[#d4af37] font-mono-code text-xs font-bold">❯</span>
           <input
             type="text"
             value={inputVal}
@@ -192,7 +192,7 @@ export default function TerminalWidget() {
           />
           <button
             type="submit"
-            className="px-3 py-1 bg-[#00f5ff]/15 hover:bg-[#00f5ff]/30 text-[#00f5ff] rounded-md font-mono-code text-xs flex items-center gap-1 transition-colors border border-[#00f5ff]/30"
+            className="px-3 py-1 bg-[#d4af37]/20 hover:bg-[#d4af37]/30 text-[#f5e6a3] rounded-md font-mono-code text-xs flex items-center gap-1 transition-colors border border-[#c5a059]/40"
           >
             <span>Run</span>
             <CornerDownLeft className="w-3 h-3" />
@@ -200,8 +200,8 @@ export default function TerminalWidget() {
         </form>
 
         {/* Quick Command Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 px-2 pt-1 border-t border-white/5">
-          <span className="text-[10px] font-mono-code text-slate-500 mr-1 uppercase tracking-wider">
+        <div className="flex flex-wrap items-center gap-1.5 px-2 pt-1 border-t border-[#c5a059]/10">
+          <span className="text-[10px] font-mono-code text-slate-400 mr-1 uppercase tracking-wider">
             Quick:
           </span>
           {quickCommands.map((cmd) => (
@@ -209,7 +209,7 @@ export default function TerminalWidget() {
               key={cmd}
               type="button"
               onClick={() => handleCommand(cmd)}
-              className="text-[11px] font-mono-code px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-slate-300 hover:text-[#00f5ff] border border-white/10 hover:border-[#00f5ff]/40 transition-all"
+              className="text-[11px] font-mono-code px-2 py-0.5 rounded bg-[#08170e] hover:bg-[#0c2215] text-slate-300 hover:text-[#f5e6a3] border border-[#c5a059]/20 hover:border-[#d4af37]/50 transition-all"
             >
               {cmd}
             </button>

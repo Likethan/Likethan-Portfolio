@@ -60,8 +60,8 @@ export default function App() {
 
   return (
     <div
-      className={`relative min-h-screen text-slate-100 selection:bg-[#ff143d]/30 selection:text-white bg-[#09090d] transition-all duration-700 ${
-        hyperdrive ? 'shadow-[inset_0_0_100px_rgba(255,20,61,0.2)]' : ''
+      className={`relative min-h-screen text-slate-100 selection:bg-[#d4af37]/30 selection:text-white bg-[#040806] transition-all duration-700 ${
+        hyperdrive ? 'shadow-[inset_0_0_100px_rgba(212,175,55,0.25)]' : ''
       }`}
     >
       {/* 1. Deep Obsidian & Kinetic Crimson WebGL Fragment Shader Layer (Zero-G Fluid Physics) */}
@@ -92,8 +92,8 @@ export default function App() {
           className="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 overflow-hidden"
         >
           {/* Subtle Ambient Radial Lighting Highlights */}
-          <div className="glow-ambient-crimson left-[-100px] top-[15%]" />
-          <div className="glow-ambient-purple right-[-100px] top-[25%]" />
+          <div className="glow-ambient-emerald left-[-100px] top-[15%]" />
+          <div className="glow-ambient-gold right-[-100px] top-[25%]" />
 
           <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Column: Kinetic Typography & CTAs */}
@@ -103,16 +103,16 @@ export default function App() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 px-3.5 py-1.5 rounded-full bg-[#0d101d]/90 border border-white/10 text-xs font-mono-code text-slate-300 backdrop-blur-xl shadow-[0_0_25px_rgba(255,20,61,0.2)]"
+                className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 px-3.5 py-1.5 rounded-full bg-[#06140b]/90 border border-[#c5a059]/25 text-xs font-mono-code text-slate-300 backdrop-blur-xl shadow-[0_0_25px_rgba(212,175,55,0.15)]"
               >
-                <div className="flex items-center gap-1.5 text-[#ff143d] font-bold">
+                <div className="flex items-center gap-1.5 text-[#d4af37] font-bold">
                   <Atom className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '6s' }} />
                   <span>ANTIGRAVITY FLUID PHYSICS</span>
                 </div>
                 <span className="text-slate-500">•</span>
                 <span className="text-slate-300">ZERO-G DYNAMICS</span>
                 <span className="text-slate-500">•</span>
-                <span className="text-[#00f5ff] font-semibold">60 FPS SMOOTH</span>
+                <span className="text-emerald-400 font-semibold">60 FPS SMOOTH</span>
               </motion.div>
 
               {/* Kinetic Headline */}
@@ -124,7 +124,7 @@ export default function App() {
               >
                 <h1 className="font-display font-black text-4xl sm:text-6xl xl:text-7xl leading-[1.05] tracking-tight text-white">
                   Engineering <br />
-                  <span className="text-gradient-crimson">Intelligent Systems</span>
+                  <span className="text-gradient-gold">Intelligent Systems</span>
                   <br />
                   <span className="text-stroke-outline">& Modern Web.</span>
                 </h1>
@@ -134,7 +134,7 @@ export default function App() {
                   <span className="font-mono-code text-sm sm:text-base text-slate-400 mr-2">
                     Specializing in:
                   </span>
-                  <span className="font-mono-code text-sm sm:text-base font-bold text-[#ff143d] transition-all">
+                  <span className="font-mono-code text-sm sm:text-base font-bold text-[#d4af37] transition-all">
                     {roles[roleIndex]}
                   </span>
                 </div>
@@ -161,9 +161,9 @@ export default function App() {
                 {siteConfig.stats.map((s) => (
                   <div
                     key={s.label}
-                    className="p-3 rounded-xl bg-[#0e1220]/60 border border-white/10 text-center backdrop-blur-md hover:border-[#ff143d]/30 transition-colors"
+                    className="p-3 rounded-xl bg-[#06140b]/75 border border-[#c5a059]/20 text-center backdrop-blur-md hover:border-[#d4af37]/45 transition-colors shadow-lg"
                   >
-                    <p className="font-display font-black text-xl text-white">{s.value}</p>
+                    <p className="font-display font-bold text-xl text-gradient-gold">{s.value}</p>
                     <p className="text-[10px] font-mono-code text-slate-400 uppercase mt-0.5">
                       {s.label}
                     </p>
@@ -183,8 +183,8 @@ export default function App() {
                   onClick={handleHyperdriveToggle}
                   className={`flex items-center gap-2 px-6 py-3 rounded-full font-mono-code font-bold text-xs uppercase tracking-wider transition-all hover:scale-105 shadow-xl ${
                     hyperdrive
-                      ? 'bg-[#ff143d] text-white shadow-[0_0_30px_rgba(255,20,61,0.8)] animate-pulse'
-                      : 'bg-gradient-to-r from-[#ff143d] via-[#ff3b5c] to-[#9d00ff] text-white shadow-[0_0_20px_rgba(255,20,61,0.4)]'
+                      ? 'bg-gradient-to-r from-[#d4af37] to-[#10b981] text-[#040806] shadow-[0_0_30px_rgba(212,175,55,0.8)] animate-pulse'
+                      : 'bg-gradient-to-r from-[#d4af37] via-[#c5a059] to-[#059669] text-[#040806] shadow-[0_0_20px_rgba(212,175,55,0.4)]'
                   }`}
                 >
                   <Zap className="w-4 h-4" />
@@ -194,7 +194,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => scrollToSection('projects')}
-                  className="px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 text-white font-mono-code font-bold text-xs border border-white/15 transition-all hover:border-[#00f5ff]/40"
+                  className="px-5 py-3 rounded-full bg-[#06140b]/80 hover:bg-[#0c2215] text-[#f5e6a3] font-mono-code font-bold text-xs border border-[#c5a059]/30 transition-all hover:border-[#d4af37]"
                 >
                   Explore Systems
                 </button>
@@ -202,7 +202,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => scrollToSection('minigame')}
-                  className="px-4 py-3 rounded-full bg-white/5 hover:bg-white/10 text-amber-300 font-mono-code font-bold text-xs border border-amber-400/30 flex items-center gap-1.5 transition-all"
+                  className="px-4 py-3 rounded-full bg-emerald-950/40 hover:bg-emerald-900/40 text-emerald-300 font-mono-code font-bold text-xs border border-emerald-500/30 flex items-center gap-1.5 transition-all hover:border-emerald-400"
                 >
                   <Gamepad2 className="w-4 h-4" />
                   <span>Cyber Game</span>
@@ -229,7 +229,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => scrollToSection('projects')}
-              className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-[#ff143d] hover:bg-[#ff143d]/20 transition-all animate-bounce"
+              className="w-8 h-8 rounded-full border border-[#c5a059]/30 flex items-center justify-center text-[#d4af37] hover:bg-[#d4af37]/20 transition-all animate-bounce"
             >
               <ArrowDown className="w-4 h-4" />
             </button>
@@ -250,7 +250,8 @@ export default function App() {
 
         {/* ================= CYBER INTRUSION MINIGAME ================= */}
         <section id="minigame" className="py-20 relative overflow-hidden">
-          <div className="glow-ambient-crimson right-[-100px] top-[10%]" />
+          <div className="glow-ambient-emerald right-[-100px] top-[10%]" />
+          <div className="glow-ambient-gold left-[-100px] bottom-[10%]" />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
             <CyberMiniGame />
           </div>
@@ -258,16 +259,17 @@ export default function App() {
 
         {/* ================= INTERACTIVE CLI TERMINAL SECTION ================= */}
         <section id="terminal" className="py-24 relative overflow-hidden">
-          <div className="glow-ambient-purple left-[-100px] top-[20%]" />
+          <div className="glow-ambient-forest left-[-100px] top-[20%]" />
+          <div className="glow-ambient-gold right-[-100px] bottom-[10%]" />
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 space-y-8">
             <div className="text-center space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ff143d]/10 border border-[#ff143d]/25 text-[#ff143d] text-xs font-mono-code font-bold">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d4af37]/10 border border-[#c5a059]/30 text-[#d4af37] text-xs font-mono-code font-bold">
                 <TerminalIcon className="w-3.5 h-3.5" />
                 <span>INTERACTIVE CLI SUITE</span>
               </div>
               <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-                Developer <span className="text-gradient-crimson">Command Center</span>
+                Developer <span className="text-gradient-gold">Command Center</span>
               </h2>
               <p className="text-slate-400 text-xs sm:text-sm font-mono-code">
                 Execute live commands in the browser or click interactive buttons to query developer telemetry.

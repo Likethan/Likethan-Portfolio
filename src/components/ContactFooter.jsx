@@ -60,19 +60,20 @@ export default function ContactFooter() {
   };
 
   return (
-    <footer id="contact" className="pt-24 pb-12 relative overflow-hidden bg-[#05060a]">
+    <footer id="contact" className="pt-24 pb-12 relative overflow-hidden bg-[#040806]">
       {/* Background glow */}
-      <div className="glow-ambient-purple left-[20%] top-0 opacity-40" />
+      <div className="glow-ambient-emerald left-[20%] top-0 opacity-40" />
+      <div className="glow-ambient-gold right-[15%] top-[20%] opacity-30" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-20">
         {/* Section Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono-code font-bold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d4af37]/10 border border-[#c5a059]/30 text-[#d4af37] text-xs font-mono-code font-bold">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>LET'S CONNECT</span>
           </div>
           <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-            Initiate a <span className="text-gradient-cyan">Conversation</span>
+            Initiate a <span className="text-gradient-gold">Conversation</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             Whether you have a breakthrough engineering opportunity, an AI project, or simply wish to connect — my channels are open.
@@ -84,13 +85,13 @@ export default function ContactFooter() {
           {/* Left Column: Coordinates & Direct Actions */}
           <div className="lg:col-span-5 space-y-6">
             {/* Quick Copy Email Card */}
-            <div className="glass-panel p-6 rounded-2xl border border-white/10 bg-[#0c101d]/80 space-y-3">
+            <div className="asgardian-frame p-6 rounded-2xl border border-[#c5a059]/20 bg-[#06140b]/85 space-y-3">
               <div className="flex items-center justify-between text-xs font-mono-code text-slate-400">
                 <span className="flex items-center gap-1.5 text-slate-300">
-                  <Mail className="w-4 h-4 text-[#00f5ff]" />
+                  <Mail className="w-4 h-4 text-[#d4af37]" />
                   <span>DIRECT EMAIL</span>
                 </span>
-                <span className="text-[10px] text-emerald-400">INBOX MONITORED</span>
+                <span className="text-[10px] text-emerald-400 font-semibold">INBOX MONITORED</span>
               </div>
               <p className="font-mono-code text-sm sm:text-base text-white font-semibold break-all">
                 {siteConfig.email}
@@ -98,7 +99,7 @@ export default function ContactFooter() {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="w-full py-2.5 px-4 rounded-xl bg-white/5 hover:bg-[#00f5ff]/20 text-slate-200 hover:text-[#00f5ff] border border-white/10 hover:border-[#00f5ff]/40 text-xs font-mono-code font-bold flex items-center justify-center gap-2 transition-all"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#08170e] hover:bg-[#0c2215] text-[#f5e6a3] border border-[#c5a059]/30 hover:border-[#d4af37] text-xs font-mono-code font-bold flex items-center justify-center gap-2 transition-all shadow-md"
               >
                 {copied ? (
                   <>
@@ -118,19 +119,19 @@ export default function ContactFooter() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a
                 href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`}
-                className="glass-panel p-5 rounded-2xl border border-white/10 bg-[#0c101d]/80 hover:border-[#00f5ff]/40 transition-all space-y-1 block group"
+                className="asgardian-frame p-5 rounded-2xl border border-[#c5a059]/20 bg-[#06140b]/85 hover:border-[#d4af37]/50 transition-all space-y-1 block group"
               >
                 <div className="flex items-center justify-between">
-                  <Phone className="w-4 h-4 text-[#00f5ff]" />
+                  <Phone className="w-4 h-4 text-[#d4af37]" />
                   <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition-colors" />
                 </div>
                 <p className="text-[10px] font-mono-code text-slate-400 uppercase">Telephone</p>
                 <p className="font-mono-code text-xs text-white font-bold">{siteConfig.phone}</p>
               </a>
 
-              <div className="glass-panel p-5 rounded-2xl border border-white/10 bg-[#0c101d]/80 space-y-1">
+              <div className="asgardian-frame p-5 rounded-2xl border border-[#c5a059]/20 bg-[#06140b]/85 space-y-1">
                 <div className="flex items-center justify-between">
-                  <MapPin className="w-4 h-4 text-[#ff2a2a]" />
+                  <MapPin className="w-4 h-4 text-emerald-400" />
                   <span className="flex items-center gap-1 text-[10px] font-mono-code text-emerald-400">
                     <Clock className="w-3 h-3" />
                     {currentTime || 'IST'}
@@ -153,9 +154,9 @@ export default function ContactFooter() {
                     target="_blank"
                     rel="noreferrer"
                     onMouseEnter={() => soundFx.playHover()}
-                    className="p-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#00f5ff]/40 hover:bg-[#00f5ff]/10 text-slate-300 hover:text-white transition-all flex flex-col items-center justify-center gap-1.5 text-xs font-mono-code group"
+                    className="p-3 rounded-xl bg-[#06140b]/80 border border-[#c5a059]/20 hover:border-[#d4af37]/50 hover:bg-[#0c2215] text-slate-300 hover:text-[#f5e6a3] transition-all flex flex-col items-center justify-center gap-1.5 text-xs font-mono-code group"
                   >
-                    <Icon className="w-4 h-4 text-slate-400 group-hover:text-[#00f5ff] transition-colors" />
+                    <Icon className="w-4 h-4 text-slate-400 group-hover:text-[#d4af37] transition-colors" />
                     <span>{s.name}</span>
                   </a>
                 );
@@ -165,7 +166,7 @@ export default function ContactFooter() {
 
           {/* Right Column: Direct Messaging Form */}
           <div className="lg:col-span-7">
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 bg-[#0b0e1b]/80 shadow-2xl relative">
+            <div className="asgardian-frame p-6 sm:p-8 rounded-3xl border border-[#c5a059]/20 bg-[#06140b]/85 shadow-2xl relative">
               <h3 className="font-display font-bold text-xl text-white mb-2">
                 Send a Direct Message
               </h3>
@@ -174,7 +175,7 @@ export default function ContactFooter() {
               </p>
 
               {formStatus === 'sent' ? (
-                <div className="p-8 text-center space-y-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
+                <div className="p-8 text-center space-y-3 bg-emerald-950/40 border border-emerald-500/30 rounded-2xl">
                   <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                     <Check className="w-6 h-6" />
                   </div>
@@ -196,7 +197,7 @@ export default function ContactFooter() {
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         placeholder="e.g., Alex Mercer"
-                        className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 focus:border-[#00f5ff] text-white text-xs sm:text-sm outline-none transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-[#c5a059]/20 focus:border-[#d4af37] text-white text-xs sm:text-sm outline-none transition-colors"
                       />
                     </div>
                     <div className="space-y-1.5">
@@ -209,7 +210,7 @@ export default function ContactFooter() {
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         placeholder="alex@company.com"
-                        className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 focus:border-[#00f5ff] text-white text-xs sm:text-sm outline-none transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-[#c5a059]/20 focus:border-[#d4af37] text-white text-xs sm:text-sm outline-none transition-colors"
                       />
                     </div>
                   </div>
@@ -224,14 +225,14 @@ export default function ContactFooter() {
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                       placeholder="Discussing software engineering roles, collaboration, or consulting..."
-                      className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 focus:border-[#00f5ff] text-white text-xs sm:text-sm outline-none transition-colors resize-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-[#c5a059]/20 focus:border-[#d4af37] text-white text-xs sm:text-sm outline-none transition-colors resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={formStatus === 'sending'}
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#00f5ff] via-[#38bdf8] to-[#8b5cf6] text-[#08090d] font-mono-code font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:shadow-[0_0_25px_rgba(0,245,255,0.4)] transition-all disabled:opacity-50"
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#c5a059] to-[#10b981] text-[#040806] font-mono-code font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all disabled:opacity-50"
                   >
                     {formStatus === 'sending' ? (
                       <>
@@ -252,9 +253,9 @@ export default function ContactFooter() {
         </div>
 
         {/* Big Watermark & Footer Row */}
-        <div className="pt-16 border-t border-white/10 space-y-8">
+        <div className="pt-16 border-t border-[#c5a059]/15 space-y-8">
           <div className="text-center select-none overflow-hidden">
-            <span className="font-display font-black text-6xl sm:text-8xl md:text-9xl text-white/[0.04] tracking-tighter hover:text-[#00f5ff]/[0.08] transition-colors duration-700">
+            <span className="font-display font-black text-6xl sm:text-8xl md:text-9xl text-white/[0.04] tracking-tighter hover:text-[#d4af37]/[0.08] transition-colors duration-700">
               LIKETHAN
             </span>
           </div>

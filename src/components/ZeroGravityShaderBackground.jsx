@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * ZeroGravityShaderBackground:
- * Pure WebGL Fragment Shader simulating antigravity physics:
- * - Deep obsidian (#09090D) void with kinetic crimson (#FF143D) and violet plasma glow
- * - Weightless fluid filaments & chromatic ribbon waves drifting upward against gravity
- * - 3D Simplex Curl noise & Brownian motion
- * - Responsive mouse velocity distortion & magnetic plasma dispersion
- * - Procedural micro-film grain & smooth vignette
+ * TemporalTimelineShader (Zero-Gravity Sacred Timeline & Emerald Mist):
+ * - Deep obsidian-forest green (#030805) void
+ * - Branching golden timeline threads (#D4AF37, #C5A059) weaving with Simplex curl noise
+ * - Muted emerald and jade celestial mist ribbons (#059669, #064E3B)
+ * - Fluid cursor velocity reaction (parting the timeline streams)
+ * - Hyperdrive: surges golden timeline strands into high-speed temporal warp
+ * - Ultra-optimized 60-120fps execution with bilinear hardware scaling and tab visibility pause
  */
 export default function ZeroGravityShaderBackground({ className = '', hyperdrive = false }) {
   const canvasRef = useRef(null);
@@ -119,67 +119,79 @@ export default function ZeroGravityShaderBackground({ className = '', hyperdrive
         return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
       }
 
-      // High-performance 2-octave fluid simplex noise
+      // Fast 2-octave curl noise for timeline streams
       float fbm(vec3 p) {
         return 0.65 * snoise(p) + 0.35 * snoise(p * 2.15);
       }
 
       // Procedural micro-film grain
       float filmGrain(vec2 uv, float t) {
-        return fract(sin(dot(uv + t * 0.05, vec2(12.9898, 78.233))) * 43758.5453) * 0.045;
+        return fract(sin(dot(uv + t * 0.05, vec2(12.9898, 78.233))) * 43758.5453) * 0.038;
       }
 
       void main() {
         vec2 uv = gl_FragCoord.xy / uResolution.xy;
         vec2 p = (gl_FragCoord.xy * 2.0 - uResolution.xy) / min(uResolution.x, uResolution.y);
 
-        // Antigravity drift coordinates: Y ascends continuously
-        float timeAscent = uTime * (0.18 + uHyperdrive * 0.42);
+        // Timeline ascension: threads float upward through the loom
+        float timeAscent = uTime * (0.14 + uHyperdrive * 0.45);
         vec2 flowCoords = p;
-        flowCoords.y -= timeAscent; // Upward antigravity flow
+        flowCoords.y -= timeAscent;
 
         // Mouse velocity & cursor magnetic plasma reaction
         vec2 mPos = (uMouse * 2.0 - uResolution.xy) / min(uResolution.x, uResolution.y);
         vec2 toMouse = p - mPos;
         float mDist = length(toMouse);
-        float mouseImpulse = smoothstep(1.4, 0.0, mDist) * (0.6 + length(uMouseVelocity) * 2.5 + uHyperdrive * 1.5);
+        float mouseImpulse = smoothstep(1.35, 0.0, mDist) * (0.55 + length(uMouseVelocity) * 2.4 + uHyperdrive * 1.5);
 
-        // Disperse and levitate upwards from cursor
-        flowCoords += normalize(toMouse + vec2(0.0, -0.4)) * mouseImpulse * 0.35;
+        // Disperse and weave golden timeline around cursor
+        flowCoords += normalize(toMouse + vec2(0.0, -0.35)) * mouseImpulse * 0.32;
 
-        // 3D Curl Noise Filaments
-        float n1 = fbm(vec3(flowCoords * 1.3, uTime * (0.08 + uHyperdrive * 0.15)));
-        float n2 = fbm(vec3(flowCoords * 2.6 + vec2(n1 * 0.5, -n1 * 0.5), uTime * (0.12 + uHyperdrive * 0.2)));
+        // Branching Timeline Filaments & Streams
+        float n1 = fbm(vec3(flowCoords * 1.25, uTime * (0.07 + uHyperdrive * 0.14)));
+        float n2 = fbm(vec3(flowCoords * 2.4 + vec2(n1 * 0.45, -n1 * 0.45), uTime * (0.11 + uHyperdrive * 0.18)));
 
-        // Chromatic ribbon waves
-        float ribbon = sin(flowCoords.y * 3.5 + n2 * 4.0 + uTime * (0.25 + uHyperdrive * 0.4));
-        ribbon = smoothstep(0.7, 0.98, ribbon) * (0.85 + uHyperdrive * 0.35);
+        // Golden sacred timeline threads (crisp, luminous filament lines)
+        float timelineThread = sin(flowCoords.y * 4.2 + n2 * 4.5 + uTime * (0.22 + uHyperdrive * 0.4));
+        timelineThread = smoothstep(0.72, 0.99, timelineThread) * (0.9 + uHyperdrive * 0.35);
 
-        // Color Palette (#09090D base, #FF143D crimson accents, #7928CA violet glow)
-        vec3 colorObsidian = vec3(0.035, 0.035, 0.051); // #09090D
-        vec3 colorCrimson  = vec3(1.0, 0.078, 0.239);   // #FF143D
-        vec3 colorViolet   = vec3(0.475, 0.157, 0.792);  // #7928CA
-        vec3 colorCyanGlow = vec3(0.0, 0.96, 1.0);      // #00F5FF
+        // Secondary branching timeline thread
+        float branchThread = cos(flowCoords.x * 3.8 + n1 * 3.5 - uTime * 0.18);
+        branchThread = smoothstep(0.78, 0.99, branchThread) * 0.55;
 
-        // Blend fluid filaments
-        float plasmaMask = smoothstep(-0.25, 0.65, n2) * (0.7 + uHyperdrive * 0.3);
-        vec3 plasmaColor = mix(colorViolet, colorCrimson, n1 * 0.5 + 0.5);
+        // Color Palette:
+        // Deep Forest-Obsidian Void (#030805)
+        // Antique Gold (#D4AF37 / #C5A059)
+        // Muted Emerald Jade (#059669 / #064E3B)
+        // Radiant Gold Highlight (#FFF3B0)
+        vec3 colorForestVoid = vec3(0.012, 0.031, 0.020); // #030805
+        vec3 colorEmerald    = vec3(0.020, 0.588, 0.412); // #059669
+        vec3 colorJadeDeep   = vec3(0.024, 0.306, 0.231); // #064E3B
+        vec3 colorAntiqueGold= vec3(0.831, 0.686, 0.216); // #D4AF37
+        vec3 colorGoldGlint  = vec3(1.000, 0.953, 0.690); // #FFF3B0
 
-        // Add chromatic dispersion on ribbon edge
-        plasmaColor += colorCyanGlow * ribbon * (0.5 + uHyperdrive * 0.4);
+        // Emerald Mist backdrop
+        float mistMask = smoothstep(-0.25, 0.65, n2) * (0.65 + uHyperdrive * 0.25);
+        vec3 mistColor = mix(colorJadeDeep, colorEmerald, n1 * 0.5 + 0.5);
 
-        vec3 finalColor = mix(colorObsidian, plasmaColor, plasmaMask * 0.45 + ribbon * 0.4);
+        // Mix void with emerald mist
+        vec3 finalColor = mix(colorForestVoid, mistColor, mistMask * 0.4);
 
-        // Add mouse ambient plasma glow
-        finalColor += colorCrimson * mouseImpulse * 0.22;
-        finalColor += colorViolet * mouseImpulse * 0.15;
+        // Weave Golden Timelines into the space
+        vec3 goldStream = mix(colorAntiqueGold, colorGoldGlint, timelineThread * 0.7);
+        finalColor += goldStream * timelineThread * 0.65;
+        finalColor += colorAntiqueGold * branchThread * 0.35;
 
-        // Micro-film grain
+        // Cursor interactive golden aura & emerald ring
+        finalColor += colorAntiqueGold * mouseImpulse * 0.22;
+        finalColor += colorEmerald * mouseImpulse * 0.12;
+
+        // Subtle micro-film grain
         float grain = filmGrain(uv, uTime);
         finalColor += grain;
 
-        // Smooth radial vignette
-        float vignette = 1.0 - smoothstep(0.4, 1.5, length(p * 0.8));
+        // Smooth radial vignette (shadowed perimeter)
+        float vignette = 1.0 - smoothstep(0.4, 1.45, length(p * 0.8));
         finalColor *= vignette;
 
         gl_FragColor = vec4(finalColor, 1.0);
@@ -236,7 +248,7 @@ export default function ZeroGravityShaderBackground({ className = '', hyperdrive
 
     const onPointerMove = (e) => {
       targetMouseX = e.clientX;
-      targetMouseY = window.innerHeight - e.clientY; // Flip Y for WebGL coords
+      targetMouseY = window.innerHeight - e.clientY;
       const dx = targetMouseX - lastMouseX;
       const dy = targetMouseY - lastMouseY;
       velX = dx / window.innerWidth;
@@ -257,7 +269,6 @@ export default function ZeroGravityShaderBackground({ className = '', hyperdrive
     document.addEventListener('visibilitychange', onVisibilityChange);
 
     const resize = () => {
-      // High-performance ambient fluid resolution (0.55 on desktop, 0.4 on mobile)
       const scale = window.innerWidth < 768 ? 0.4 : 0.55;
       canvas.width = Math.max(320, Math.floor(window.innerWidth * scale));
       canvas.height = Math.max(240, Math.floor(window.innerHeight * scale));

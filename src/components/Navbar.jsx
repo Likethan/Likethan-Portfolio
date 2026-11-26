@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Menu, X, Sun, Moon, ArrowUpRight, Zap, Music } from 'lucide-react';
-import { siteConfig, navItems } from '../lib/siteData';
+import { Volume2, VolumeX, Menu, X, Zap, Music } from 'lucide-react';
+import { navItems } from '../lib/siteData';
 import { cyberAudio } from '../utils/cyberAudio';
 
 export default function Navbar({
@@ -10,8 +10,6 @@ export default function Navbar({
   setMusicEnabled,
   hyperdrive,
   setHyperdrive,
-  theme,
-  toggleTheme,
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -84,10 +82,10 @@ export default function Navbar({
         <nav
           className={`flex items-center justify-between gap-3 px-3 sm:px-6 py-2 sm:py-2.5 rounded-full transition-all duration-300 w-full max-w-6xl border backdrop-blur-2xl shadow-2xl ${
             hyperdrive
-              ? 'bg-[#120408]/95 border-[#ff143d]/60 shadow-[0_0_35px_rgba(255,20,61,0.4)]'
+              ? 'bg-[#040e07]/95 border-[#d4af37]/70 shadow-[0_0_35px_rgba(212,175,55,0.35)]'
               : scrolled
-              ? 'bg-[#090b14]/90 border-white/15 shadow-[0_15px_35px_rgba(0,0,0,0.6)]'
-              : 'bg-[#090b14]/70 border-white/10'
+              ? 'bg-[#050d08]/90 border-[#c5a059]/25 shadow-[0_15px_35px_rgba(0,0,0,0.7)]'
+              : 'bg-[#050d08]/75 border-[#c5a059]/15'
           }`}
         >
           {/* Brand Logo & Live Status */}
@@ -97,24 +95,24 @@ export default function Navbar({
               onClick={(e) => handleNavClick(e, '#hero')}
               className="flex items-center gap-2 group"
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff143d] to-[#9d00ff] p-[1.5px] transition-transform group-hover:scale-105 shadow-[0_0_15px_rgba(255,20,61,0.4)]">
-                <div className="w-full h-full bg-[#08090d] rounded-[7px] flex items-center justify-center font-display font-black text-sm text-white">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#d4af37] via-[#c5a059] to-[#064e3b] p-[1.5px] transition-transform group-hover:scale-105 shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                <div className="w-full h-full bg-[#040806] rounded-[7px] flex items-center justify-center font-display font-black text-sm text-[#f5e6a3]">
                   LK
                 </div>
               </div>
-              <span className="font-display font-extrabold text-base tracking-tight text-white group-hover:text-[#ff143d] transition-colors">
-                Likethan<span className="text-[#ff143d]">.</span>
+              <span className="font-display font-extrabold text-base tracking-tight text-white group-hover:text-[#d4af37] transition-colors">
+                Likethan<span className="text-[#d4af37]">.</span>
               </span>
             </a>
 
             <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[11px] font-mono-code text-emerald-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 beacon-dot" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>ONLINE</span>
             </div>
           </div>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
+          <div className="hidden md:flex items-center gap-1 bg-[#06120a]/60 border border-[#c5a059]/15 px-3 py-1 rounded-full backdrop-blur-md">
             {navItems.map((item) => {
               const targetId = item.href.replace('#', '');
               const isActive = activeSection === targetId;
@@ -127,8 +125,8 @@ export default function Navbar({
                   onMouseEnter={() => cyberAudio.playHoverBlip()}
                   className={`px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${
                     isActive
-                      ? 'bg-[#ff143d]/20 text-[#ff143d] border border-[#ff143d]/50 shadow-[0_0_15px_rgba(255,20,61,0.25)]'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                      ? 'bg-[#d4af37]/20 text-[#f5e6a3] border border-[#d4af37]/50 shadow-[0_0_15px_rgba(212,175,55,0.25)]'
+                      : 'text-slate-300 hover:text-[#d4af37] hover:bg-white/5'
                   }`}
                 >
                   {item.label}
@@ -145,8 +143,8 @@ export default function Navbar({
               title={hyperdrive ? 'Disengage Hyperdrive' : 'Engage Hyperdrive (Warp Velocity)'}
               className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono-code font-bold border transition-all ${
                 hyperdrive
-                  ? 'bg-[#ff143d] text-white border-[#ff143d] shadow-[0_0_20px_rgba(255,20,61,0.8)] animate-pulse'
-                  : 'bg-white/5 text-[#ff143d] border-[#ff143d]/40 hover:bg-[#ff143d]/15'
+                  ? 'bg-gradient-to-r from-[#d4af37] to-[#10b981] text-[#040806] border-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.7)] animate-pulse'
+                  : 'bg-[#08150c]/80 text-[#d4af37] border-[#c5a059]/40 hover:bg-[#c5a059]/15'
               }`}
             >
               <Zap className={`w-3.5 h-3.5 ${hyperdrive ? 'animate-bounce' : ''}`} />
@@ -159,8 +157,8 @@ export default function Navbar({
               title={musicEnabled ? 'Stop ambient cyberpunk audio' : 'Play ambient cyberpunk audio'}
               className={`p-2 rounded-full border transition-all ${
                 musicEnabled
-                  ? 'bg-purple-500/25 text-purple-300 border-purple-500/50 shadow-[0_0_15px_rgba(157,0,255,0.4)]'
-                  : 'bg-white/5 text-slate-400 border-white/10 hover:text-white hover:bg-white/10'
+                  ? 'bg-emerald-500/25 text-emerald-300 border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.4)]'
+                  : 'bg-white/5 text-slate-400 border-white/10 hover:text-[#d4af37] hover:bg-white/10'
               }`}
             >
               <Music className={`w-3.5 h-3.5 ${musicEnabled ? 'animate-spin' : ''}`} style={{ animationDuration: '4s' }} />
@@ -172,8 +170,8 @@ export default function Navbar({
               title={soundEnabled ? 'Mute haptic sound effects' : 'Enable haptic sound effects'}
               className={`p-2 rounded-full border transition-all ${
                 soundEnabled
-                  ? 'bg-[#ff143d]/20 text-[#ff143d] border-[#ff143d]/50 shadow-[0_0_12px_rgba(255,20,61,0.3)]'
-                  : 'bg-white/5 text-slate-400 border-white/10 hover:text-white hover:bg-white/10'
+                  ? 'bg-[#d4af37]/20 text-[#d4af37] border-[#d4af37]/50 shadow-[0_0_12px_rgba(212,175,55,0.3)]'
+                  : 'bg-white/5 text-slate-400 border-white/10 hover:text-[#d4af37] hover:bg-white/10'
               }`}
             >
               {soundEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
@@ -192,13 +190,13 @@ export default function Navbar({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/90 backdrop-blur-2xl md:hidden flex flex-col justify-center items-center p-6 space-y-6">
+        <div className="fixed inset-0 z-40 bg-[#040806]/95 backdrop-blur-2xl md:hidden flex flex-col justify-center items-center p-6 space-y-6">
           <button
             onClick={handleHyperdriveToggle}
             className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-mono-code font-bold border ${
               hyperdrive
-                ? 'bg-[#ff143d] text-white border-[#ff143d] shadow-[0_0_25px_rgba(255,20,61,0.8)]'
-                : 'bg-white/10 text-[#ff143d] border-[#ff143d]/50'
+                ? 'bg-gradient-to-r from-[#d4af37] to-[#10b981] text-[#040806] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.8)]'
+                : 'bg-white/10 text-[#d4af37] border-[#c5a059]/50'
             }`}
           >
             <Zap className="w-4 h-4" />
@@ -210,7 +208,7 @@ export default function Navbar({
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="font-display font-bold text-2xl text-slate-200 hover:text-[#ff143d] transition-colors"
+              className="font-display font-bold text-2xl text-slate-200 hover:text-[#d4af37] transition-colors"
             >
               {item.label}
             </a>
@@ -219,7 +217,7 @@ export default function Navbar({
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="mt-6 px-8 py-3 rounded-full bg-gradient-to-r from-[#ff143d] to-[#ff3b5c] text-white font-bold text-sm"
+            className="mt-6 px-8 py-3 rounded-full bg-gradient-to-r from-[#d4af37] to-[#c5a059] text-[#040806] font-bold text-sm shadow-[0_0_20px_rgba(212,175,55,0.4)]"
           >
             Start a Conversation
           </a>

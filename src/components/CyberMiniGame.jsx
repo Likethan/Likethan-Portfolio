@@ -82,12 +82,12 @@ export default function CyberMiniGame() {
   }, [isPlaying, timeLeft, score]);
 
   return (
-    <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/15 bg-[#090b14]/90 shadow-2xl relative overflow-hidden space-y-6">
+    <div className="asgardian-frame p-6 sm:p-8 rounded-3xl border border-[#c5a059]/25 bg-[#06140b]/90 shadow-2xl relative overflow-hidden space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#c5a059]/15">
         <div>
           <div className="flex items-center gap-2">
-            <ShieldAlert className="w-5 h-5 text-[#ff143d] animate-pulse" />
+            <ShieldAlert className="w-5 h-5 text-[#d4af37] animate-pulse" />
             <h3 className="font-display font-extrabold text-xl text-white">
               CYBER INTRUSION MINIGAME
             </h3>
@@ -98,28 +98,28 @@ export default function CyberMiniGame() {
         </div>
 
         <div className="flex items-center gap-4 text-xs font-mono-code">
-          <div className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-center">
+          <div className="px-3 py-1.5 rounded-xl bg-[#08170e] border border-[#c5a059]/20 text-center">
             <p className="text-[10px] text-slate-400">TIME REMAINING</p>
-            <p className={`text-base font-black ${timeLeft <= 5 ? 'text-[#ff143d] animate-ping' : 'text-white'}`}>
+            <p className={`text-base font-black ${timeLeft <= 5 ? 'text-[#d4af37] animate-ping' : 'text-white'}`}>
               {timeLeft}s
             </p>
           </div>
-          <div className="px-3 py-1.5 rounded-xl bg-[#ff143d]/15 border border-[#ff143d]/30 text-center">
+          <div className="px-3 py-1.5 rounded-xl bg-[#d4af37]/15 border border-[#c5a059]/40 text-center">
             <p className="text-[10px] text-slate-400">SCORE</p>
-            <p className="text-base font-black text-[#ff143d]">{score}</p>
+            <p className="text-base font-black text-[#d4af37]">{score}</p>
           </div>
         </div>
       </div>
 
       {/* Game Viewport / Arena */}
-      <div className="relative w-full h-72 sm:h-80 bg-black/70 rounded-2xl border border-white/10 overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-72 sm:h-80 bg-[#040806]/95 rounded-2xl border border-[#c5a059]/20 overflow-hidden flex items-center justify-center">
         {/* Radar Background grid lines */}
-        <div className="absolute inset-0 bg-grid-cyber opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-cyber opacity-20 pointer-events-none" />
         <div className="scanline-overlay pointer-events-none" />
 
         {!isPlaying && !gameOver && (
           <div className="text-center space-y-4 z-10 p-6">
-            <Trophy className="w-12 h-12 text-[#ff143d] mx-auto opacity-90 animate-bounce" />
+            <Trophy className="w-12 h-12 text-[#d4af37] mx-auto opacity-90 animate-bounce" />
             <div>
               <h4 className="font-display font-bold text-lg text-white">
                 Ready to Test Your Reflexes?
@@ -130,7 +130,7 @@ export default function CyberMiniGame() {
             </div>
             <button
               onClick={startGame}
-              className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#ff143d] to-[#ff3b5c] text-white font-mono-code font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_25px_rgba(255,20,61,0.6)] transition-all hover:scale-105"
+              className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#d4af37] via-[#c5a059] to-[#10b981] text-[#040806] font-mono-code font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] transition-all hover:scale-105"
             >
               Start Security Simulation
             </button>
@@ -138,16 +138,16 @@ export default function CyberMiniGame() {
         )}
 
         {gameOver && (
-          <div className="text-center space-y-3 z-10 p-6 bg-[#090b14]/90 rounded-2xl border border-white/10 max-w-sm">
-            <Award className="w-10 h-10 text-amber-400 mx-auto" />
+          <div className="text-center space-y-3 z-10 p-6 bg-[#06140b]/95 rounded-2xl border border-[#c5a059]/30 max-w-sm shadow-2xl">
+            <Award className="w-10 h-10 text-[#d4af37] mx-auto" />
             <h4 className="font-display font-extrabold text-xl text-white">SIMULATION COMPLETED</h4>
-            <div className="p-3 bg-white/5 rounded-xl border border-white/5 font-mono-code">
-              <p className="text-xs text-slate-400">FINAL SCORE: <span className="font-bold text-[#ff143d]">{score} PTS</span></p>
+            <div className="p-3 bg-[#08170e] rounded-xl border border-[#c5a059]/20 font-mono-code">
+              <p className="text-xs text-slate-400">FINAL SCORE: <span className="font-bold text-[#d4af37]">{score} PTS</span></p>
               <p className="text-xs text-emerald-400 font-bold mt-1">{rank}</p>
             </div>
             <button
               onClick={startGame}
-              className="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono-code text-xs font-bold transition-all flex items-center gap-1.5 mx-auto"
+              className="px-5 py-2 rounded-full bg-[#d4af37]/20 hover:bg-[#d4af37]/30 text-[#f5e6a3] border border-[#c5a059]/30 font-mono-code text-xs font-bold transition-all flex items-center gap-1.5 mx-auto"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Retry Simulation</span>
@@ -164,8 +164,8 @@ export default function CyberMiniGame() {
                 style={{ top: `${t.y}%`, left: `${t.x}%` }}
                 className={`absolute transform -translate-x-1/2 -translate-y-1/2 px-3 py-1.5 rounded-xl text-xs font-mono-code font-bold border shadow-lg transition-transform hover:scale-115 active:scale-95 animate-pulse cursor-pointer ${
                   t.type === 'critical'
-                    ? 'bg-[#ff143d] text-white border-[#ff143d] shadow-[0_0_20px_rgba(255,20,61,0.8)]'
-                    : 'bg-[#00f5ff]/20 text-[#00f5ff] border-[#00f5ff]/50 shadow-[0_0_15px_rgba(0,245,255,0.4)]'
+                    ? 'bg-[#d4af37] text-[#040806] border-[#f5e6a3] shadow-[0_0_20px_rgba(212,175,55,0.8)]'
+                    : 'bg-[#08170e] text-emerald-300 border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.4)]'
                 }`}
               >
                 <span>⚡ {t.label}</span>
