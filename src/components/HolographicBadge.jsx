@@ -5,8 +5,8 @@ import { soundFx } from '../utils/soundFx';
 
 export default function HolographicBadge() {
   const cardRef = useRef(null);
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
-  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
+  const glareRef = useRef(null);
+  const rafRef = useRef(null);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -20,17 +20,28 @@ export default function HolographicBadge() {
     const rotateX = ((y - centerY) / centerY) * -12;
     const rotateY = ((x - centerX) / centerX) * 12;
 
-    setRotate({ x: rotateX, y: rotateY });
-    setGlare({
-      x: (x / rect.width) * 100,
-      y: (y / rect.height) * 100,
-      opacity: 0.75,
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      if (cardRef.current) {
+        cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+      }
+      if (glareRef.current) {
+        const gx = ((x / rect.width) * 100).toFixed(1);
+        const gy = ((y / rect.height) * 100).toFixed(1);
+        glareRef.current.style.opacity = '0.75';
+        glareRef.current.style.background = `radial-gradient(circle at ${gx}% ${gy}%, rgba(0, 245, 255, 0.35) 0%, rgba(255, 42, 42, 0.2) 35%, transparent 70%)`;
+      }
     });
   };
 
   const handleMouseLeave = () => {
-    setRotate({ x: 0, y: 0 });
-    setGlare((prev) => ({ ...prev, opacity: 0 }));
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    if (cardRef.current) {
+      cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    }
+    if (glareRef.current) {
+      glareRef.current.style.opacity = '0';
+    }
   };
 
   return (
@@ -49,17 +60,19 @@ export default function HolographicBadge() {
         onMouseLeave={handleMouseLeave}
         onMouseEnter={() => soundFx.playHover()}
         style={{
-          transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+          transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)',
+          willChange: 'transform',
         }}
-        className="holo-badge relative w-[310px] sm:w-[340px] rounded-2xl p-4 bg-[#0d111c]/95 border border-white/15 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),0_0_35px_rgba(0,245,255,0.15)] overflow-hidden cursor-pointer backdrop-blur-xl transition-transform duration-150 ease-out"
+        className="holo-badge relative w-[310px] sm:w-[340px] rounded-2xl p-4 bg-[#0d111c]/95 border border-white/15 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),0_0_35px_rgba(0,245,255,0.15)] overflow-hidden cursor-pointer backdrop-blur-xl transition-transform duration-100 ease-out"
       >
         {/* Holographic Iridescent Glare */}
         <div
+          ref={glareRef}
           className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-30"
           style={{
-            opacity: glare.opacity,
-            background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(0, 245, 255, 0.35) 0%, rgba(255, 42, 42, 0.2) 35%, transparent 70%)`,
+            opacity: 0,
             mixBlendMode: 'screen',
+            willChange: 'opacity, background',
           }}
         />
 
@@ -80,6 +93,8 @@ export default function HolographicBadge() {
           <img
             src="/profile_upright.png"
             alt="Likethan K J — Full Stack Developer"
+            loading="eager"
+            decoding="async"
             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
               // Fallback to portrait or placeholder if needed

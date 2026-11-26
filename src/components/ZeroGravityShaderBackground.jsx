@@ -119,17 +119,9 @@ export default function ZeroGravityShaderBackground({ className = '', hyperdrive
         return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
       }
 
-      // Fractional Brownian Motion (fBm) with upward antigravity curl
+      // High-performance 2-octave fluid simplex noise
       float fbm(vec3 p) {
-        float f = 0.0;
-        float amp = 0.5;
-        float freq = 1.0;
-        for (int i = 0; i < 4; i++) {
-          f += amp * snoise(p * freq);
-          freq *= 2.05;
-          amp *= 0.48;
-        }
-        return f;
+        return 0.65 * snoise(p) + 0.35 * snoise(p * 2.15);
       }
 
       // Procedural micro-film grain
@@ -257,11 +249,18 @@ export default function ZeroGravityShaderBackground({ className = '', hyperdrive
 
     let animationId;
     let startTime = performance.now();
+    let isTabVisible = true;
+
+    const onVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
+      // High-performance ambient fluid resolution (0.55 on desktop, 0.4 on mobile)
+      const scale = window.innerWidth < 768 ? 0.4 : 0.55;
+      canvas.width = Math.max(320, Math.floor(window.innerWidth * scale));
+      canvas.height = Math.max(240, Math.floor(window.innerHeight * scale));
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(uResLoc, canvas.width, canvas.height);
     };
@@ -270,26 +269,28 @@ export default function ZeroGravityShaderBackground({ className = '', hyperdrive
     resize();
 
     const render = () => {
+      animationId = requestAnimationFrame(render);
+      if (!isTabVisible) return;
+
       const now = performance.now();
       const elapsed = (now - startTime) * 0.001;
 
       // Smooth mouse lerp
-      mouseX += (targetMouseX - mouseX) * 0.08;
-      mouseY += (targetMouseY - mouseY) * 0.08;
-      velX *= 0.92;
-      velY *= 0.92;
+      mouseX += (targetMouseX - mouseX) * 0.1;
+      mouseY += (targetMouseY - mouseY) * 0.1;
+      velX *= 0.9;
+      velY *= 0.9;
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const scale = window.innerWidth < 768 ? 0.4 : 0.55;
       const targetHyper = hyperdriveRef.current ? 1.0 : 0.0;
       hyperVal += (targetHyper - hyperVal) * 0.08;
 
-      gl.uniform2f(uMouseLoc, mouseX * dpr, mouseY * dpr);
+      gl.uniform2f(uMouseLoc, mouseX * scale, mouseY * scale);
       gl.uniform2f(uMouseVelLoc, velX, velY);
       gl.uniform1f(uTimeLoc, elapsed);
       gl.uniform1f(uHyperdriveLoc, hyperVal);
 
       gl.drawArrays(gl.TRIANGLES, 0, 3);
-      animationId = requestAnimationFrame(render);
     };
 
     render();
@@ -298,6 +299,7 @@ export default function ZeroGravityShaderBackground({ className = '', hyperdrive
       cancelAnimationFrame(animationId);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('resize', resize);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       gl.deleteProgram(program);
       gl.deleteShader(vertShader);
       gl.deleteShader(fragShader);
