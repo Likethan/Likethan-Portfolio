@@ -92,7 +92,8 @@ export const navItems: NavItem[] = [
   { label: "Projects", href: "#projects" },
   { label: "Skills Matrix", href: "#skills" },
   { label: "Experience", href: "#experience" },
-  { label: "Interactive Terminal", href: "#terminal" },
+  { label: "Cyber Game", href: "#minigame" },
+  { label: "Terminal", href: "#terminal" },
   { label: "Contact", href: "#contact" },
 ];
 
