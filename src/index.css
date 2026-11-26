@@ -225,31 +225,6 @@ body {
 
 .holo-badge {
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-  will-change: transform;
-}
-
-.holo-badge::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(0, 245, 255, 0.2) 30%,
-    rgba(255, 42, 42, 0.2) 60%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
-
-.holo-badge:hover::after {
-  opacity: 1;
 }
 
 /* Marquee Animations */
