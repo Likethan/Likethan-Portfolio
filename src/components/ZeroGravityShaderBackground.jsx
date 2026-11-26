@@ -9,8 +9,13 @@ import React, { useEffect, useRef } from 'react';
  * - Responsive mouse velocity distortion & magnetic plasma dispersion
  * - Procedural micro-film grain & smooth vignette
  */
-export default function ZeroGravityShaderBackground({ className = '' }) {
+export default function ZeroGravityShaderBackground({ className = '', hyperdrive = false }) {
   const canvasRef = useRef(null);
+  const hyperdriveRef = useRef(hyperdrive);
+
+  useEffect(() => {
+    hyperdriveRef.current = hyperdrive;
+  }, [hyperdrive]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -48,6 +53,7 @@ export default function ZeroGravityShaderBackground({ className = '' }) {
       uniform float uTime;
       uniform vec2 uMouse;
       uniform vec2 uMouseVelocity;
+      uniform float uHyperdrive;
 
       // Simplex 3D noise primitives
       vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
@@ -136,7 +142,7 @@ export default function ZeroGravityShaderBackground({ className = '' }) {
         vec2 p = (gl_FragCoord.xy * 2.0 - uResolution.xy) / min(uResolution.x, uResolution.y);
 
         // Antigravity drift coordinates: Y ascends continuously
-        float timeAscent = uTime * 0.18;
+        float timeAscent = uTime * (0.18 + uHyperdrive * 0.42);
         vec2 flowCoords = p;
         flowCoords.y -= timeAscent; // Upward antigravity flow
 
@@ -144,18 +150,18 @@ export default function ZeroGravityShaderBackground({ className = '' }) {
         vec2 mPos = (uMouse * 2.0 - uResolution.xy) / min(uResolution.x, uResolution.y);
         vec2 toMouse = p - mPos;
         float mDist = length(toMouse);
-        float mouseImpulse = smoothstep(1.4, 0.0, mDist) * (0.6 + length(uMouseVelocity) * 2.5);
+        float mouseImpulse = smoothstep(1.4, 0.0, mDist) * (0.6 + length(uMouseVelocity) * 2.5 + uHyperdrive * 1.5);
 
         // Disperse and levitate upwards from cursor
         flowCoords += normalize(toMouse + vec2(0.0, -0.4)) * mouseImpulse * 0.35;
 
         // 3D Curl Noise Filaments
-        float n1 = fbm(vec3(flowCoords * 1.3, uTime * 0.08));
-        float n2 = fbm(vec3(flowCoords * 2.6 + vec2(n1 * 0.5, -n1 * 0.5), uTime * 0.12));
+        float n1 = fbm(vec3(flowCoords * 1.3, uTime * (0.08 + uHyperdrive * 0.15)));
+        float n2 = fbm(vec3(flowCoords * 2.6 + vec2(n1 * 0.5, -n1 * 0.5), uTime * (0.12 + uHyperdrive * 0.2)));
 
         // Chromatic ribbon waves
-        float ribbon = sin(flowCoords.y * 3.5 + n2 * 4.0 + uTime * 0.25);
-        ribbon = smoothstep(0.7, 0.98, ribbon) * 0.85;
+        float ribbon = sin(flowCoords.y * 3.5 + n2 * 4.0 + uTime * (0.25 + uHyperdrive * 0.4));
+        ribbon = smoothstep(0.7, 0.98, ribbon) * (0.85 + uHyperdrive * 0.35);
 
         // Color Palette (#09090D base, #FF143D crimson accents, #7928CA violet glow)
         vec3 colorObsidian = vec3(0.035, 0.035, 0.051); // #09090D
@@ -164,17 +170,17 @@ export default function ZeroGravityShaderBackground({ className = '' }) {
         vec3 colorCyanGlow = vec3(0.0, 0.96, 1.0);      // #00F5FF
 
         // Blend fluid filaments
-        float plasmaMask = smoothstep(-0.25, 0.65, n2) * 0.7;
+        float plasmaMask = smoothstep(-0.25, 0.65, n2) * (0.7 + uHyperdrive * 0.3);
         vec3 plasmaColor = mix(colorViolet, colorCrimson, n1 * 0.5 + 0.5);
 
         // Add chromatic dispersion on ribbon edge
-        plasmaColor += colorCyanGlow * ribbon * 0.5;
+        plasmaColor += colorCyanGlow * ribbon * (0.5 + uHyperdrive * 0.4);
 
         vec3 finalColor = mix(colorObsidian, plasmaColor, plasmaMask * 0.45 + ribbon * 0.4);
 
         // Add mouse ambient plasma glow
-        finalColor += colorCrimson * mouseImpulse * 0.18;
-        finalColor += colorViolet * mouseImpulse * 0.12;
+        finalColor += colorCrimson * mouseImpulse * 0.22;
+        finalColor += colorViolet * mouseImpulse * 0.15;
 
         // Micro-film grain
         float grain = filmGrain(uv, uTime);
@@ -224,6 +230,8 @@ export default function ZeroGravityShaderBackground({ className = '' }) {
     const uTimeLoc = gl.getUniformLocation(program, 'uTime');
     const uMouseLoc = gl.getUniformLocation(program, 'uMouse');
     const uMouseVelLoc = gl.getUniformLocation(program, 'uMouseVelocity');
+    const uHyperdriveLoc = gl.getUniformLocation(program, 'uHyperdrive');
+    let hyperVal = 0.0;
 
     let mouseX = window.innerWidth * 0.5;
     let mouseY = window.innerHeight * 0.5;
@@ -272,9 +280,13 @@ export default function ZeroGravityShaderBackground({ className = '' }) {
       velY *= 0.92;
 
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const targetHyper = hyperdriveRef.current ? 1.0 : 0.0;
+      hyperVal += (targetHyper - hyperVal) * 0.08;
+
       gl.uniform2f(uMouseLoc, mouseX * dpr, mouseY * dpr);
       gl.uniform2f(uMouseVelLoc, velX, velY);
       gl.uniform1f(uTimeLoc, elapsed);
+      gl.uniform1f(uHyperdriveLoc, hyperVal);
 
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       animationId = requestAnimationFrame(render);

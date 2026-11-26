@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Sparkles, Terminal as TerminalIcon, Github, Linkedin, ArrowUpRight, Cpu, Layers, Shield, FileText, Atom, Zap, Gamepad2, Volume2, Flame } from 'lucide-react';
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
-import AntigravityCanvas from './components/AntigravityCanvas';
 import ZeroGravityShaderBackground from './components/ZeroGravityShaderBackground';
 import HolographicBadge from './components/HolographicBadge';
 import QuantumCore3D from './components/QuantumCore3D';
@@ -67,12 +66,9 @@ export default function App() {
       }`}
     >
       {/* 1. Deep Obsidian & Kinetic Crimson WebGL Fragment Shader Layer (Zero-G Fluid Physics) */}
-      <ZeroGravityShaderBackground />
+      <ZeroGravityShaderBackground hyperdrive={hyperdrive} />
 
-      {/* 2. Interactive Three.js Antigravity Scene (2,500 Particles + Click Shockwaves + Flingable Crystals + Hyperdrive) */}
-      <AntigravityCanvas hyperdrive={hyperdrive} />
-
-      {/* 3. Noise Texture Overlay for Editorial Luxury Polish */}
+      {/* 2. Noise Texture Overlay for Editorial Luxury Polish */}
       <div className="noise-overlay" aria-hidden="true" />
 
       {/* 4. Interactive Desktop Custom Cursor */}
@@ -112,12 +108,12 @@ export default function App() {
               >
                 <div className="flex items-center gap-1.5 text-[#ff143d] font-bold">
                   <Atom className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '6s' }} />
-                  <span>ANTIGRAVITY PHYSICS</span>
+                  <span>ANTIGRAVITY FLUID PHYSICS</span>
                 </div>
                 <span className="text-slate-500">•</span>
-                <span className="text-slate-300">CLICK TO SHOCKWAVE</span>
+                <span className="text-slate-300">ZERO-G DYNAMICS</span>
                 <span className="text-slate-500">•</span>
-                <span className="text-[#00f5ff] font-semibold">2,500 PARTICLES</span>
+                <span className="text-[#00f5ff] font-semibold">60 FPS SMOOTH</span>
               </motion.div>
 
               {/* Kinetic Headline */}
