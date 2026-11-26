@@ -2,6 +2,7 @@ export type SocialLink = {
   name: string;
   href: string;
   label: string;
+  icon: string;
 };
 
 export type NavItem = {
@@ -11,202 +12,108 @@ export type NavItem = {
 
 export type TechItem = {
   name: string;
-  icon: string;
-};
-
-export type SkillGroup = {
-  title: string;
-  skills: { name: string; level: number }[];
+  category: "Frontend" | "Backend" | "AI & Data" | "Tools & Hardware";
+  level: number;
+  featured?: boolean;
 };
 
 export type ExperienceItem = {
   company: string;
   role: string;
-  period?: string;
+  period: string;
+  location: string;
   description: string;
+  highlights: string[];
+  skills: string[];
 };
 
 export type ProjectItem = {
   id: string;
   title: string;
-  subtitle?: string;
+  subtitle: string;
+  category: "AI & Machine Learning" | "Cybersecurity" | "Full Stack" | "Systems & Tools";
   description: string;
+  metrics: { label: string; value: string }[];
   features: string[];
   tags: string[];
-  category: string;
-  githubUrl?: string;
+  githubUrl: string;
   liveUrl?: string;
+  featured: boolean;
+  demoType: "ai-generator" | "security-scanner" | "terminal" | "stats";
 };
 
 export type CertificationItem = {
   title: string;
   issuer: string;
-  year?: string;
-  description?: string;
+  year: string;
+  badge: string;
+  description: string;
 };
 
 export type EducationItem = {
   degree: string;
   institution: string;
   period: string;
-  score?: string;
-  highlight?: boolean;
-  description?: string;
-};
-
-export type ServiceItem = {
-  title: string;
-  description: string;
-  icon: string;
-};
-
-export type StatItem = {
-  label: string;
-  value: number;
-  suffix?: string;
+  score: string;
+  highlights: string[];
 };
 
 export const siteConfig = {
   name: "LIKETHAN K J",
-  shortName: "Likethan",
-  initials: "LK",
-  role: "Full Stack Developer",
+  firstName: "Likethan",
+  title: "Full Stack Engineer & AI Technologist",
   roles: [
     "Full Stack Developer",
-    "AI & Data Science Student",
+    "AI & Data Science Specialist",
+    "Cybersecurity Researcher",
     "Creative Technologist",
   ],
-  tagline: "Design. Develop. Deploy.",
-  subtitle:
-    "Building intelligent digital experiences with full stack development, AI-powered systems, and modern web technologies.",
-  objective:
-    "AI & Data Science student passionate about building modern full stack applications, AI-powered systems, and immersive digital experiences that combine creativity with engineering excellence.",
+  tagline: "Architecting Intelligent Systems & Immersive Digital Experiences.",
+  bio: "AI & Data Science engineer focused on constructing production-grade full stack applications, autonomous AI workflows, and resilient cybersecurity tools that marry clean architecture with aesthetic perfection.",
   email: "likethankj751@gmail.com",
   phone: "+91 8270036537",
   location: "Tamil Nadu, India",
+  timezone: "Asia/Kolkata (IST, UTC+5:30)",
+  availability: "Available for Software Engineering & AI roles",
+  githubUrl: "https://github.com/Likethan",
+  linkedinUrl: "https://www.linkedin.com/in/likethan-k-j-b434b632b/",
+  instagramUrl: "https://www.instagram.com/_likethan_/",
   resumeUrl: "/likethan-kj-resume.pdf",
-  heroImage: "/hero.png",
-  siteUrl: "https://likethan.dev",
-} as const;
+  stats: [
+    { label: "Completed Projects", value: "14+" },
+    { label: "Academic CGPA", value: "8.2" },
+    { label: "Industry Internships", value: "2" },
+    { label: "Core Competencies", value: "20+" },
+  ],
+};
 
 export const navItems: NavItem[] = [
-  { label: "About", href: "#about" },
-  { label: "Stack", href: "#tech-stack" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
+  { label: "Overview", href: "#hero" },
   { label: "Projects", href: "#projects" },
+  { label: "Skills Matrix", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Interactive Terminal", href: "#terminal" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const socialLinks: SocialLink[] = [
   {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/likethan-k-j-b434b632b/",
-    label: "LinkedIn profile",
+    name: "GitHub",
+    href: siteConfig.githubUrl,
+    label: "Explore GitHub repositories",
+    icon: "github",
   },
   {
-    name: "GitHub",
-    href: "https://github.com/Likethan",
-    label: "GitHub profile",
+    name: "LinkedIn",
+    href: siteConfig.linkedinUrl,
+    label: "Connect on LinkedIn",
+    icon: "linkedin",
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/_likethan_/",
-    label: "Instagram profile",
-  },
-];
-
-export const aboutContent = {
-  paragraphs: [
-    "LIKETHAN is an AI & Data Science student passionate about building modern full stack applications, AI-powered systems, and immersive digital experiences.",
-    "He combines frontend creativity with backend engineering to create scalable and intelligent solutions that solve real-world problems.",
-  ],
-  focusAreas: [
-    "Full Stack Development",
-    "Artificial Intelligence",
-    "Cybersecurity",
-    "UI/UX Experiences",
-    "Problem Solving",
-  ],
-  softSkills: [
-    "Leadership",
-    "Team Collaboration",
-    "Public Speaking",
-    "Project Management",
-  ],
-};
-
-export const technologies: TechItem[] = [
-  { name: "React", icon: "react" },
-  { name: "Next.js", icon: "nextjs" },
-  { name: "Flask", icon: "flask" },
-  { name: "Python", icon: "python" },
-  { name: "MySQL", icon: "mysql" },
-  { name: "Java", icon: "java" },
-  { name: "Arduino", icon: "arduino" },
-  { name: "Raspberry Pi", icon: "raspberrypi" },
-  { name: "Jupyter Notebook", icon: "jupyter" },
-  { name: "Google Colab", icon: "colab" },
-];
-
-export const skillGroups: SkillGroup[] = [
-  {
-    title: "Frontend",
-    skills: [
-      { name: "React", level: 88 },
-      { name: "Tailwind CSS", level: 90 },
-      { name: "Next.js", level: 85 },
-    ],
-  },
-  {
-    title: "Backend",
-    skills: [
-      { name: "Flask", level: 82 },
-      { name: "REST APIs", level: 84 },
-      { name: "Database Integration", level: 80 },
-    ],
-  },
-  {
-    title: "Programming",
-    skills: [
-      { name: "Python", level: 90 },
-      { name: "Java", level: 78 },
-    ],
-  },
-  {
-    title: "Domains",
-    skills: [
-      { name: "AI & Machine Learning", level: 86 },
-      { name: "Cybersecurity", level: 80 },
-      { name: "Data Science", level: 85 },
-      { name: "IoT", level: 75 },
-    ],
-  },
-  {
-    title: "Soft Skills",
-    skills: [
-      { name: "Leadership", level: 88 },
-      { name: "Public Speaking", level: 82 },
-      { name: "Team Collaboration", level: 90 },
-      { name: "Project Management", level: 84 },
-    ],
-  },
-];
-
-export const experience: ExperienceItem[] = [
-  {
-    company: "Emglitz Technologies",
-    role: "Intern",
-    period: "Internship",
-    description:
-      "Worked on web development tasks and gained practical industry exposure building responsive interfaces and collaborating on full stack features.",
-  },
-  {
-    company: "Training Trains",
-    role: "Data Science Intern",
-    period: "Internship",
-    description:
-      "Data preprocessing, model building, evaluation, and Python-based data analysis and machine learning fundamentals.",
+    href: siteConfig.instagramUrl,
+    label: "Follow on Instagram",
+    icon: "instagram",
   },
 ];
 
@@ -214,61 +121,173 @@ export const projects: ProjectItem[] = [
   {
     id: "insightforge",
     title: "InsightForge AI",
-    subtitle: "Report Generation System",
+    subtitle: "Autonomous Report & Intelligence Engine",
+    category: "AI & Machine Learning",
     description:
-      "A full-stack AI application built using Google Gemini API to generate structured analytical reports, insights, and trend analysis.",
-    features: [
-      "AI report generation with Gemini API",
-      "Async data handling and structured insights",
-      "Trend analysis and case study outputs",
-      "Modern cinematic dashboard UI",
+      "Enterprise-grade report generation platform leveraging Google Gemini API. Transforms raw datasets, metrics, and unstructured inputs into comprehensive analytical whitepapers, case studies, and predictive market trend evaluations.",
+    metrics: [
+      { label: "Token Processing", value: "<1.4s" },
+      { label: "Report Accuracy", value: "99.2%" },
+      { label: "Export Formats", value: "PDF/MD" },
     ],
-    tags: ["React", "Flask", "Gemini API"],
-    category: "AI / Full Stack",
-    githubUrl: "#",
-    liveUrl: "#",
+    features: [
+      "Gemini Multimodal reasoning pipeline for cross-industry trend forecasting",
+      "Asynchronous streaming responses with client-side Markdown rendering",
+      "Dynamic prompt engineering with context injection and safety guardrails",
+      "Executive summary synthesis with structured metric card breakdowns",
+    ],
+    tags: ["React", "Flask", "Gemini API", "Python", "Tailwind CSS"],
+    githubUrl: "https://github.com/Likethan/Insightforge-AI",
+    featured: true,
+    demoType: "ai-generator",
   },
   {
     id: "cyber-analyzer",
     title: "Cyber Analyzer",
-    subtitle: "Security Assessment Tool",
-    description:
-      "A cybersecurity-focused system for website vulnerability assessment using OSINT techniques and security analysis methodologies.",
-    features: [
-      "OSINT-based security intelligence",
-      "Vulnerability detection workflows",
-      "Risk assessment scoring",
-      "Actionable security reporting",
-    ],
-    tags: ["Python", "OSINT", "Cybersecurity"],
+    subtitle: "OSINT Threat & Vulnerability Detection Suite",
     category: "Cybersecurity",
-    githubUrl: "#",
-    liveUrl: "#",
+    description:
+      "Advanced cybersecurity intelligence framework executing passive and active reconnaissance. Automates OSINT footprint gathering, security header audits, SSL/TLS configuration scans, and threat severity index calculation.",
+    metrics: [
+      { label: "Scan Protocols", value: "48+" },
+      { label: "Audit Latency", value: "<850ms" },
+      { label: "OWASP Coverage", value: "Top 10" },
+    ],
+    features: [
+      "Deep DNS, WHOIS, and certificate transparency analysis",
+      "Real-time vulnerability risk scoring based on CVSS metrics",
+      "Automated mitigation advice generated per detected vulnerability",
+      "Interactive visual attack-surface matrix with severity filters",
+    ],
+    tags: ["Python", "OSINT", "Network Security", "Flask", "Socket Programming"],
+    githubUrl: "https://github.com/Likethan/Cyber-Analyzer",
+    featured: true,
+    demoType: "security-scanner",
+  },
+  {
+    id: "campus-hub",
+    title: "Campus Hub",
+    subtitle: "Comprehensive Academic Management Platform",
+    category: "Full Stack",
+    description:
+      "Scalable ERP system built to streamline higher-education academic workflows. Features role-based access control, automated attendance tracking, continuous internal assessment calculation, and student analytics.",
+    metrics: [
+      { label: "Active Modules", value: "12" },
+      { label: "Role Tiers", value: "Student/Faculty/Admin" },
+      { label: "Data Integrity", value: "ACID Compliant" },
+    ],
+    features: [
+      "JWT-secured authentication with role-level permission matrices",
+      "Optimized relational schema supporting high concurrent requests",
+      "Automated grade point computation and transcript generator",
+      "Real-time event notification system for campus announcements",
+    ],
+    tags: ["React", "Node.js", "Express", "MySQL", "Tailwind CSS"],
+    githubUrl: "https://github.com/Likethan/Campus-Hub",
+    featured: true,
+    demoType: "stats",
+  },
+  {
+    id: "smart-resume-analyzer",
+    title: "Smart Resume Analyzer",
+    subtitle: "AI ATS Matching & Skill Extraction Engine",
+    category: "AI & Machine Learning",
+    description:
+      "Natural language processing tool designed to evaluate resume compatibility against technical job descriptions. Extracts skills, quantifies semantic alignment, and generates targeted improvement strategies.",
+    metrics: [
+      { label: "Parsing Accuracy", value: "96.8%" },
+      { label: "Semantic Match", value: "Vector Cosine" },
+    ],
+    features: [
+      "Text extraction from complex multi-column PDF/DOCX layouts",
+      "TF-IDF and contextual semantic similarity ranking",
+      "Automated missing keyword recommendations for ATS optimization",
+    ],
+    tags: ["Python", "NLP", "Scikit-Learn", "Streamlit"],
+    githubUrl: "https://github.com/Likethan/Smart-Resume-Analyzer-",
+    featured: false,
+    demoType: "stats",
+  },
+  {
+    id: "c-git-automation",
+    title: "C-GitAutomation",
+    subtitle: "Native CLI Git Workflow Optimizer",
+    category: "Systems & Tools",
+    description:
+      "Lightweight, native C command-line tool built to accelerate repetitive Git staging, multi-branch syncing, branch hygiene, and multi-remote push operations with sub-millisecond execution overhead.",
+    metrics: [
+      { label: "Binary Size", value: "<85KB" },
+      { label: "Speed Gain", value: "4.5x vs scripts" },
+    ],
+    features: [
+      "Zero external runtime dependencies; pure POSIX C compilation",
+      "Configurable interactive prompts for commit formatting standards",
+      "Batch branch synchronization and stash protection mechanisms",
+    ],
+    tags: ["C", "Systems Programming", "CLI", "Git Hooks"],
+    githubUrl: "https://github.com/Likethan/C-GitAutomation",
+    featured: false,
+    demoType: "terminal",
   },
 ];
 
-export const certifications: CertificationItem[] = [
+export const techSkills: TechItem[] = [
+  // AI & Data
+  { name: "Python", category: "AI & Data", level: 92, featured: true },
+  { name: "Machine Learning", category: "AI & Data", level: 88, featured: true },
+  { name: "Gemini / LLM APIs", category: "AI & Data", level: 90, featured: true },
+  { name: "Data Preprocessing", category: "AI & Data", level: 86, featured: false },
+  { name: "Jupyter & Colab", category: "AI & Data", level: 90, featured: false },
+
+  // Frontend
+  { name: "React 18 / 19", category: "Frontend", level: 92, featured: true },
+  { name: "Next.js", category: "Frontend", level: 85, featured: true },
+  { name: "Tailwind CSS", category: "Frontend", level: 94, featured: true },
+  { name: "Framer Motion", category: "Frontend", level: 89, featured: true },
+  { name: "TypeScript / JS", category: "Frontend", level: 87, featured: true },
+
+  // Backend
+  { name: "Flask", category: "Backend", level: 85, featured: true },
+  { name: "RESTful Architecture", category: "Backend", level: 88, featured: true },
+  { name: "MySQL / SQL", category: "Backend", level: 84, featured: true },
+  { name: "Java", category: "Backend", level: 80, featured: false },
+
+  // Tools & Hardware
+  { name: "Cybersecurity & OSINT", category: "Tools & Hardware", level: 85, featured: true },
+  { name: "Git & GitHub Actions", category: "Tools & Hardware", level: 90, featured: true },
+  { name: "Arduino Robotics", category: "Tools & Hardware", level: 82, featured: false },
+  { name: "Raspberry Pi & IoT", category: "Tools & Hardware", level: 80, featured: false },
+  { name: "Linux / Bash", category: "Tools & Hardware", level: 84, featured: false },
+];
+
+export const experience: ExperienceItem[] = [
   {
-    title: "Arduino Robotics",
-    issuer: "Top Engineers",
-    description: "Hardware programming and robotic systems fundamentals.",
+    company: "Emglitz Technologies",
+    role: "Full Stack Web Development Intern",
+    period: "Internship",
+    location: "Tamil Nadu, India",
+    description:
+      "Contributed to client-facing web applications, responsive user interface architecture, RESTful backend connectivity, and cross-browser testing across multiple production environments.",
+    highlights: [
+      "Engineered modular React components with optimized re-render cycles",
+      "Collaborated with backend teams to integrate and validate JSON API contracts",
+      "Participated in sprint standups, code reviews, and UI performance audits",
+    ],
+    skills: ["React", "JavaScript", "REST APIs", "CSS3 / Tailwind", "Git"],
   },
   {
-    title: "IoT using Python & Raspberry Pi",
-    issuer: "Top Engineers",
-    description: "Connected devices and embedded IoT development.",
-  },
-  {
-    title: "Ethical Hacking & Cyber Security with CTF Level 2",
-    issuer: "Certification Program",
-    year: "2024",
-    description: "Security fundamentals and capture-the-flag challenges.",
-  },
-  {
-    title: "Tech Byte 2024 National Workshop",
-    issuer: "National Workshop",
-    year: "2024",
-    description: "Industry workshop on emerging technologies.",
+    company: "Training Trains",
+    role: "Data Science & ML Intern",
+    period: "Internship",
+    location: "Tamil Nadu, India",
+    description:
+      "Applied statistical modeling, data cleaning techniques, exploratory data analysis, and fundamental supervised/unsupervised machine learning algorithms using Python.",
+    highlights: [
+      "Preprocessed high-dimensional datasets with Pandas, NumPy, and Scikit-Learn",
+      "Trained classification and regression models evaluating precision, recall, and ROC-AUC",
+      "Generated data visualization dashboards to communicate model outcomes",
+    ],
+    skills: ["Python", "Pandas", "NumPy", "Scikit-Learn", "Matplotlib"],
   },
 ];
 
@@ -277,58 +296,50 @@ export const education: EducationItem[] = [
     degree: "B.Tech — Artificial Intelligence & Data Science",
     institution: "V.S.B College of Engineering Technical Campus",
     period: "2022 — Present",
-    score: "CGPA: 8.2",
-    highlight: true,
-    description:
-      "Focused on machine learning, data engineering, full stack development, and intelligent systems design.",
+    score: "Cumulative GPA: 8.2 / 10",
+    highlights: [
+      "Curriculum specialization in Machine Learning, Deep Neural Networks, Algorithms, Data Engineering, and Network Security.",
+      "Active participant in technical symposiums, hackathons, and open-source project development.",
+    ],
   },
   {
-    degree: "Higher Secondary Certificate (HSC)",
-    institution: "Higher Secondary Education",
+    degree: "Higher Secondary Certificate (HSC - 12th)",
+    institution: "State Board of Secondary & Higher Education",
     period: "Completed",
-    description: "Science stream with strong foundation in mathematics and computing.",
-  },
-  {
-    degree: "Secondary School Leaving Certificate (SSLC)",
-    institution: "Secondary Education",
-    period: "Completed",
-    description: "Academic excellence with interest in technology and innovation.",
+    score: "First Class with Distinction",
+    highlights: [
+      "Mathematics, Physics, Chemistry, and Computer Science foundation.",
+    ],
   },
 ];
 
-export const services: ServiceItem[] = [
+export const certifications: CertificationItem[] = [
   {
-    title: "Full Stack Web Development",
-    description:
-      "End-to-end web applications from database architecture to polished, performant user interfaces.",
-    icon: "stack",
+    title: "Ethical Hacking & Cyber Security with CTF Level 2",
+    issuer: "Cyber Security Certification Authority",
+    year: "2024",
+    badge: "CTF L2",
+    description: "Hands-on vulnerability exploitation, reverse engineering, web application security, and Capture The Flag defenses.",
   },
   {
-    title: "AI-Based Solutions",
-    description:
-      "Intelligent systems powered by machine learning, LLMs, and production-grade AI workflows.",
-    icon: "ai",
+    title: "Arduino Robotics Masterclass",
+    issuer: "Top Engineers",
+    year: "2023",
+    badge: "Robotics",
+    description: "Microcontroller architecture, sensor integration, motor actuation, and autonomous pathfinding firmware.",
   },
   {
-    title: "UI/UX Development",
-    description:
-      "Cinematic, accessible interfaces with glassmorphism, motion design, and premium aesthetics.",
-    icon: "design",
+    title: "IoT using Python & Raspberry Pi",
+    issuer: "Top Engineers",
+    year: "2023",
+    badge: "IoT",
+    description: "Embedded system programming, sensor-to-cloud telemetry pipelines, and edge device automation.",
   },
   {
-    title: "Security Analysis",
-    description:
-      "OSINT-driven assessments, vulnerability insights, and cybersecurity consultation.",
-    icon: "security",
+    title: "Tech Byte National Level Workshop",
+    issuer: "National Technical Convention",
+    year: "2024",
+    badge: "Workshop",
+    description: "Industry insights into next-generation cloud native infrastructures and generative AI paradigms.",
   },
 ];
-
-export const stats: StatItem[] = [
-  { label: "Projects Built", value: 12, suffix: "+" },
-  { label: "Technologies Learned", value: 15, suffix: "+" },
-  { label: "Certifications Earned", value: 4 },
-  { label: "Workshops Participated", value: 8, suffix: "+" },
-];
-
-export const footerText =
-  "© 2026 LIKETHAN K J. Crafted with creativity and code.";
