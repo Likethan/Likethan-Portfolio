@@ -16,7 +16,7 @@ export default function CertificationsWall() {
     <section className="py-20 relative overflow-hidden">
       <div className="glow-ambient-gold right-[-150px] top-[10%]" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-12">
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-12">
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d4af37]/10 border border-[#c5a059]/30 text-[#d4af37] text-xs font-mono-code font-bold">
             <Award className="w-3.5 h-3.5" />

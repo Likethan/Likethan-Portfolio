@@ -89,15 +89,15 @@ export default function App() {
         {/* ================= HERO SECTION ================= */}
         <section
           id="hero"
-          className="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 overflow-hidden"
+          className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-16 px-4 sm:px-8 lg:px-12 xl:px-16 overflow-hidden w-full"
         >
           {/* Subtle Ambient Radial Lighting Highlights */}
           <div className="glow-ambient-emerald left-[-100px] top-[15%]" />
           <div className="glow-ambient-gold right-[-100px] top-[25%]" />
 
-          <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="max-w-[1500px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
             {/* Left Column: Kinetic Typography & CTAs */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div className="lg:col-span-7 xl:col-span-7 space-y-6 text-center lg:text-left">
               {/* Antigravity Interactive Status Pill */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
@@ -122,7 +122,7 @@ export default function App() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="space-y-2"
               >
-                <h1 className="font-display font-black text-4xl sm:text-6xl xl:text-7xl leading-[1.05] tracking-tight text-white">
+                <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight text-white">
                   Engineering <br />
                   <span className="text-gradient-gold">Intelligent Systems</span>
                   <br />
@@ -145,7 +145,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0"
+                className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0"
               >
                 AI & Data Science engineer architecting production-grade full stack applications,
                 autonomous LLM workflows, and resilient cybersecurity intelligence suites.
@@ -156,14 +156,14 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.25 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-2 max-w-lg mx-auto lg:mx-0"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 py-2 max-w-xl mx-auto lg:mx-0"
               >
                 {siteConfig.stats.map((s) => (
                   <div
                     key={s.label}
-                    className="p-3 rounded-xl bg-[#06140b]/75 border border-[#c5a059]/20 text-center backdrop-blur-md hover:border-[#d4af37]/45 transition-colors shadow-lg"
+                    className="p-3.5 rounded-xl bg-[#06140b]/80 border border-[#c5a059]/20 text-center backdrop-blur-md hover:border-[#d4af37]/45 transition-colors shadow-lg"
                   >
-                    <p className="font-display font-bold text-xl text-gradient-gold">{s.value}</p>
+                    <p className="font-display font-bold text-xl sm:text-2xl text-gradient-gold">{s.value}</p>
                     <p className="text-[10px] font-mono-code text-slate-400 uppercase mt-0.5">
                       {s.label}
                     </p>
@@ -210,12 +210,12 @@ export default function App() {
               </motion.div>
             </div>
 
-            {/* Right Column: 3D Holographic ID Card */}
+            {/* Right Column: 3D Holographic ID Card / Loki Centerpiece */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 flex justify-center items-center"
+              className="lg:col-span-5 xl:col-span-5 flex justify-center items-center relative py-4 lg:py-0"
             >
               <HolographicBadge />
             </motion.div>
@@ -252,7 +252,7 @@ export default function App() {
         <section id="minigame" className="py-20 relative overflow-hidden">
           <div className="glow-ambient-emerald right-[-100px] top-[10%]" />
           <div className="glow-ambient-gold left-[-100px] bottom-[10%]" />
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
             <CyberMiniGame />
           </div>
         </section>
@@ -262,7 +262,7 @@ export default function App() {
           <div className="glow-ambient-forest left-[-100px] top-[20%]" />
           <div className="glow-ambient-gold right-[-100px] bottom-[10%]" />
 
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 space-y-8">
+          <div className="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-8">
             <div className="text-center space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d4af37]/10 border border-[#c5a059]/30 text-[#d4af37] text-xs font-mono-code font-bold">
                 <TerminalIcon className="w-3.5 h-3.5" />

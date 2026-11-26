@@ -13,7 +13,7 @@ export default function ExperienceTimeline() {
       <div className="glow-ambient-forest left-[-150px] top-[30%]" />
       <div className="glow-ambient-gold right-[-150px] top-[40%]" />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 space-y-12">
+      <div className="max-w-6xl xl:max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-12">
         {/* Section Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d4af37]/10 border border-[#c5a059]/30 text-[#d4af37] text-xs font-mono-code font-bold">

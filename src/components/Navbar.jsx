@@ -80,7 +80,7 @@ export default function Navbar({
         }`}
       >
         <nav
-          className={`flex items-center justify-between gap-3 px-3 sm:px-6 py-2 sm:py-2.5 rounded-full transition-all duration-300 w-full max-w-6xl border backdrop-blur-2xl shadow-2xl ${
+          className={`flex items-center justify-between gap-3 px-3 sm:px-6 py-2 sm:py-2.5 rounded-full transition-all duration-300 w-full max-w-[1500px] border backdrop-blur-2xl shadow-2xl ${
             hyperdrive
               ? 'bg-[#040e07]/95 border-[#d4af37]/70 shadow-[0_0_35px_rgba(212,175,55,0.35)]'
               : scrolled

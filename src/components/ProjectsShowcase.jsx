@@ -20,7 +20,7 @@ export default function ProjectsShowcase() {
       <div className="glow-ambient-emerald right-[-150px] top-[15%]" />
       <div className="glow-ambient-gold left-[-150px] bottom-[20%]" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-12">
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-12">
         {/* Section Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/30 text-[#f5e6a3] text-xs font-mono-code font-bold">
