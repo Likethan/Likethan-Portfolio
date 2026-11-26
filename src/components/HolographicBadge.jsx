@@ -31,13 +31,13 @@ export default function HolographicBadge() {
         {/* Photo Container - Static, Crisp Display */}
         <div className="relative mt-3 rounded-xl overflow-hidden border border-[#c5a059]/25 bg-black/60 aspect-[4/4.8] shadow-inner">
           <img
-            src="/profile_upright.png"
+            src="./profile_loki.png"
             alt="Likethan K J — Full Stack Developer"
             loading="eager"
             decoding="async"
             className="w-full h-full object-cover object-top"
             onError={(e) => {
-              e.currentTarget.src = '/portrait.png';
+              e.currentTarget.src = './profile_upright.png';
             }}
           />
 
