@@ -151,17 +151,43 @@ export default function Navbar({
               <span className="hidden sm:inline">{hyperdrive ? 'WARP ON' : 'HYPERDRIVE'}</span>
             </button>
 
-            {/* Ambient Synth Drone Music Toggle */}
+            {/* Loki Theme & BGM Controller */}
             <button
               onClick={handleMusicToggle}
-              title={musicEnabled ? 'Stop ambient cyberpunk audio' : 'Play ambient cyberpunk audio'}
-              className={`p-2 rounded-full border transition-all ${
+              title={musicEnabled ? 'Pause Loki Sacred Timeline BGM' : 'Play Loki Theme & Sacred Timeline BGM'}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full border font-mono-code text-xs font-bold transition-all shadow-md ${
                 musicEnabled
-                  ? 'bg-emerald-500/25 text-emerald-300 border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.4)]'
-                  : 'bg-white/5 text-slate-400 border-white/10 hover:text-[#d4af37] hover:bg-white/10'
+                  ? 'bg-gradient-to-r from-emerald-950/80 via-[#071a10] to-[#122416] text-[#f5e6a3] border-[#d4af37]/60 shadow-[0_0_20px_rgba(212,175,55,0.35)]'
+                  : 'bg-[#06140b]/80 text-slate-300 border-[#c5a059]/25 hover:border-[#d4af37] hover:text-[#f5e6a3]'
               }`}
             >
-              <Music className={`w-3.5 h-3.5 ${musicEnabled ? 'animate-spin' : ''}`} style={{ animationDuration: '4s' }} />
+              <Music className={`w-3.5 h-3.5 ${musicEnabled ? 'text-[#d4af37] animate-pulse' : 'text-slate-400'}`} />
+              <span className="hidden sm:inline">
+                {musicEnabled ? 'LOKI BGM' : 'PLAY BGM'}
+              </span>
+              {/* Animated 4-bar Audio Visualizer */}
+              <div className="flex items-end gap-0.5 h-3.5 pl-0.5">
+                {[
+                  { delay: '0s' },
+                  { delay: '0.15s' },
+                  { delay: '0.3s' },
+                  { delay: '0.45s' },
+                ].map((bar, idx) => (
+                  <span
+                    key={idx}
+                    className={`w-0.5 rounded-full transition-all duration-300 ${
+                      musicEnabled
+                        ? 'bg-gradient-to-t from-emerald-400 to-[#d4af37] animate-pulse'
+                        : 'bg-slate-600'
+                    }`}
+                    style={{
+                      height: musicEnabled ? (idx % 2 === 0 ? '14px' : '8px') : '3px',
+                      animationDuration: musicEnabled ? '0.7s' : undefined,
+                      animationDelay: bar.delay,
+                    }}
+                  />
+                ))}
+              </div>
             </button>
 
             {/* Sound FX Toggle */}
@@ -191,17 +217,31 @@ export default function Navbar({
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-[#040806]/95 backdrop-blur-2xl md:hidden flex flex-col justify-center items-center p-6 space-y-6">
-          <button
-            onClick={handleHyperdriveToggle}
-            className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-mono-code font-bold border ${
-              hyperdrive
-                ? 'bg-gradient-to-r from-[#d4af37] to-[#10b981] text-[#040806] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.8)]'
-                : 'bg-white/10 text-[#d4af37] border-[#c5a059]/50'
-            }`}
-          >
-            <Zap className="w-4 h-4" />
-            <span>{hyperdrive ? 'WARP SPEED ACTIVE' : 'ENGAGE HYPERDRIVE'}</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleHyperdriveToggle}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono-code font-bold border ${
+                hyperdrive
+                  ? 'bg-gradient-to-r from-[#d4af37] to-[#10b981] text-[#040806] border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.8)]'
+                  : 'bg-white/10 text-[#d4af37] border-[#c5a059]/50'
+              }`}
+            >
+              <Zap className="w-4 h-4" />
+              <span>{hyperdrive ? 'WARP ON' : 'HYPERDRIVE'}</span>
+            </button>
+
+            <button
+              onClick={handleMusicToggle}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono-code font-bold border ${
+                musicEnabled
+                  ? 'bg-emerald-950/80 text-[#f5e6a3] border-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.4)]'
+                  : 'bg-white/10 text-slate-300 border-[#c5a059]/30'
+              }`}
+            >
+              <Music className={`w-4 h-4 ${musicEnabled ? 'text-[#d4af37] animate-pulse' : 'text-slate-400'}`} />
+              <span>{musicEnabled ? 'LOKI BGM: ON' : 'LOKI BGM: OFF'}</span>
+            </button>
+          </div>
 
           {navItems.map((item) => (
             <a
